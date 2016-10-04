@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="default" defaultIdMethod="native" defaultPhpNamingMethod="underscore">
+  <table name="clubinfo" idMethod="native" phpName="Clubinfo">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="clubname" phpName="Clubname" type="VARCHAR" size="255" required="true"/>
+    <column name="president" phpName="President" type="VARCHAR" size="255" required="true"/>
+    <column name="country" phpName="Country" type="VARCHAR" size="255" required="true"/>
+    <column name="countrycode" phpName="Countrycode" type="VARCHAR" size="3" required="true"/>
+    <column name="location" phpName="Location" type="VARCHAR" size="255"/>
+    <column name="city" phpName="City" type="VARCHAR" size="255" required="true"/>
+    <column name="district" phpName="District" type="VARCHAR" size="255" required="true"/>
+    <column name="contact1" phpName="Contact1" type="INTEGER" size="15" required="true"/>
+    <column name="contact2" phpName="Contact2" type="INTEGER" size="15"/>
+    <column name="sponsor" phpName="Sponsor" type="VARCHAR" size="255" required="true"/>
+    <column name="useruuid" phpName="Useruuid" type="VARCHAR" size="255" required="true"/>
+    <column name="intro" phpName="Intro" type="BLOB"/>
+    <column name="created" phpName="Created" type="INTEGER" required="true"/>
+    <column name="modified" phpName="Modified" type="INTEGER" required="true"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+</database>

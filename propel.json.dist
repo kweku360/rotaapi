@@ -1,0 +1,8 @@
+{
+    "propel": {
+        "paths": {
+            "schemaDir": "C:\\xampp\\htdocs\\rotaraise\\v1",
+            "phpDir": "C:\\xampp\\htdocs\\rotaraise\\v1"
+        }
+    }
+}

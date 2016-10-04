@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database package="propelclasses" name="default" defaultIdMethod="native" defaultPhpNamingMethod="underscore">
+  <table name="clubinfo" idMethod="native" phpName="Clubinfo">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="clubname" phpName="Clubname" type="VARCHAR" size="255" required="true"/>
+    <column name="president" phpName="President" type="VARCHAR" size="255" required="true"/>
+    <column name="country" phpName="Country" type="VARCHAR" size="255" required="true"/>
+    <column name="countrycode" phpName="Countrycode" type="VARCHAR" size="3" required="true"/>
+    <column name="location" phpName="Location" type="VARCHAR" size="255"/>
+    <column name="city" phpName="City" type="VARCHAR" size="255" required="true"/>
+    <column name="district" phpName="District" type="VARCHAR" size="255" required="true"/>
+    <column name="contact1" phpName="Contact1" type="INTEGER" size="15" required="true"/>
+    <column name="contact2" phpName="Contact2" type="INTEGER" size="15"/>
+    <column name="sponsor" phpName="Sponsor" type="VARCHAR" size="255" required="true"/>
+    <column name="useruuid" phpName="Useruuid" type="VARCHAR" size="255" required="true"/>
+    <column name="intro" phpName="Intro" type="BLOB"/>
+    <column name="created" phpName="Created" type="INTEGER" required="true"/>
+    <column name="modified" phpName="Modified" type="INTEGER" required="true"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+
+  <table name="mediastore" idMethod="native" phpName="Mediastore">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="title" phpName="Title" type="VARCHAR" size="255" required="true"/>
+    <column name="description" phpName="Description" type="VARCHAR" size="255" required="true"/>
+    <column name="type" phpName="Type" type="VARCHAR" size="255" required="true"/>
+    <column name="filename" phpName="Filename" type="VARCHAR" size="255" required="true"/>
+    <column name="ext" phpName="Ext" type="VARCHAR" size="255"/>
+    <column name="uuid" phpName="Uuid" type="VARCHAR" size="255" required="true"/>
+    <column name="mime" phpName="Mime" type="VARCHAR" size="255" required="false"/>
+    <column name="size" phpName="Size" type="INTEGER" size="15" required="false"/>
+    <column name="created" phpName="Created" type="INTEGER" required="true"/>
+    <column name="modified" phpName="Modified" type="INTEGER" required="true"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+
+  <table name="project" idMethod="native" phpName="Project">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="uuid" phpName="Uuid" type="VARCHAR" size="255" required="true"/>
+    <column name="name" phpName="Name" type="VARCHAR" size="255" required="true"/>
+    <column name="urlcode" phpName="urlcode" type="VARCHAR" size="255" required="true"/>
+    <column name="status" phpName="status" type="VARCHAR" size="255" required="true"/>
+    <column name="country" phpName="Country" type="VARCHAR" size="255" required="true"/>
+    <column name="countrycode" phpName="Countrycode" type="VARCHAR" size="3" required="true"/>
+    <column name="city" phpName="City" type="VARCHAR" size="255" required="true"/>
+    <column name="startdate" phpName="Startdate" type="VARCHAR" size="255" required="true"/>
+      <column name="clubuuid" phpName="Clubuuid" type="VARCHAR" size="255" required="true"/>
+    <column name="enddate" phpName="enddate" type="VARCHAR" size="255" required="true"/>
+    <column name="created" phpName="Created" type="INTEGER" required="true"/>
+    <column name="modified" phpName="Modified" type="INTEGER" required="true"/>
+    <vendor type="mysql">
+        <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+</table>
+    <table name="projectaccount" idMethod="native" phpName="Projectaccount">
+        <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="uuid" phpName="Uuid" type="VARCHAR" size="255" required="true"/>
+        <column name="targetamt" phpName="Targetamt" type="INTEGER" required="true"/>
+        <column name="Totaltargetamt" phpName="TotalTargetamt" type="INTEGER" required="true"/>
+        <column name="amtoffsite" phpName="Amtoffsite" type="INTEGER" required="true"/>
+        <column name="amtraised" phpName="Amtraised" type="INTEGER" required="true"/>
+        <column name="donorcount" phpName="Donorcount" type="INTEGER" required="true"/>
+        <column name="projectuuid" phpName="ProjectUuid" type="VARCHAR" size="255" required="true"/>
+        <column name="clubuuid" phpName="Clubuuid" type="VARCHAR" size="255" required="true"/>
+        <column name="created" phpName="Created" type="INTEGER" required="true"/>
+        <column name="modified" phpName="Modified" type="INTEGER" required="true"/>
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+        </vendor>
+    </table>
+    <table name="projectdisplay" idMethod="native" phpName="Projectdisplay">
+        <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="uuid" phpName="Uuid" type="VARCHAR" size="255" required="true"/>
+        <column name="tagline" phpName="Tagline" type="VARCHAR" size="255" required="true"/>
+        <column name="description" phpName="description" type="LONGVARCHAR" required="true"/>
+        <column name="category" phpName="Category" type="VARCHAR" size="255" required="true"/>
+        <column name="sociallinks" phpName="Sociallinks" type="LONGVARCHAR"  required="false"/>
+        <column name="tags" phpName="Tags" type="LONGVARCHAR" required="true"/>
+        <column name="projectuuid" phpName="ProjectUuid" type="VARCHAR" size="255" required="true"/>
+        <column name="clubuuid" phpName="Clubuuid" type="VARCHAR" size="255" required="true"/>
+        <column name="created" phpName="Created" type="INTEGER" required="true"/>
+        <column name="modified" phpName="Modified" type="INTEGER" required="true"/>
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+        </vendor>
+    </table>
+</database>

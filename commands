@@ -1,0 +1,7 @@
+php C:\xampp\htdocs\rotaraise\v1\vendor\propel\propel\bin\propel migrate
+php C:\xampp\htdocs\rotaraise\v1\vendor\propel\propel\bin\propel diff
+
+php C:\xampp\htdocs\rotaraise\v1\vendor\propel\propel\bin\propel sql:build --overwrite
+php C:\xampp\htdocs\rotaraise\v1\vendor\propel\propel\bin\propel model:build
+
+composer dump-autoload
