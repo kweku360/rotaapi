@@ -74,7 +74,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildClubinfo findOneByContact2(int $contact2) Return the first ChildClubinfo filtered by the contact2 column
  * @method     ChildClubinfo findOneBySponsor(string $sponsor) Return the first ChildClubinfo filtered by the sponsor column
  * @method     ChildClubinfo findOneByUseruuid(string $useruuid) Return the first ChildClubinfo filtered by the useruuid column
- * @method     ChildClubinfo findOneByIntro(resource $intro) Return the first ChildClubinfo filtered by the intro column
+ * @method     ChildClubinfo findOneByIntro(string $intro) Return the first ChildClubinfo filtered by the intro column
  * @method     ChildClubinfo findOneByCreated(int $created) Return the first ChildClubinfo filtered by the created column
  * @method     ChildClubinfo findOneByModified(int $modified) Return the first ChildClubinfo filtered by the modified column *
 
@@ -93,7 +93,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildClubinfo requireOneByContact2(int $contact2) Return the first ChildClubinfo filtered by the contact2 column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildClubinfo requireOneBySponsor(string $sponsor) Return the first ChildClubinfo filtered by the sponsor column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildClubinfo requireOneByUseruuid(string $useruuid) Return the first ChildClubinfo filtered by the useruuid column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildClubinfo requireOneByIntro(resource $intro) Return the first ChildClubinfo filtered by the intro column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildClubinfo requireOneByIntro(string $intro) Return the first ChildClubinfo filtered by the intro column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildClubinfo requireOneByCreated(int $created) Return the first ChildClubinfo filtered by the created column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildClubinfo requireOneByModified(int $modified) Return the first ChildClubinfo filtered by the modified column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
@@ -110,7 +110,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildClubinfo[]|ObjectCollection findByContact2(int $contact2) Return ChildClubinfo objects filtered by the contact2 column
  * @method     ChildClubinfo[]|ObjectCollection findBySponsor(string $sponsor) Return ChildClubinfo objects filtered by the sponsor column
  * @method     ChildClubinfo[]|ObjectCollection findByUseruuid(string $useruuid) Return ChildClubinfo objects filtered by the useruuid column
- * @method     ChildClubinfo[]|ObjectCollection findByIntro(resource $intro) Return ChildClubinfo objects filtered by the intro column
+ * @method     ChildClubinfo[]|ObjectCollection findByIntro(string $intro) Return ChildClubinfo objects filtered by the intro column
  * @method     ChildClubinfo[]|ObjectCollection findByCreated(int $created) Return ChildClubinfo objects filtered by the created column
  * @method     ChildClubinfo[]|ObjectCollection findByModified(int $modified) Return ChildClubinfo objects filtered by the modified column
  * @method     ChildClubinfo[]|\Propel\Runtime\Util\PropelModelPager paginate($page = 1, $maxPerPage = 10, ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
@@ -682,13 +682,28 @@ abstract class ClubinfoQuery extends ModelCriteria
     /**
      * Filter the query on the intro column
      *
-     * @param     mixed $intro The value to use as filter
+     * Example usage:
+     * <code>
+     * $query->filterByIntro('fooValue');   // WHERE intro = 'fooValue'
+     * $query->filterByIntro('%fooValue%'); // WHERE intro LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $intro The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildClubinfoQuery The current query, for fluid interface
      */
     public function filterByIntro($intro = null, $comparison = null)
     {
+        if (null === $comparison) {
+            if (is_array($intro)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $intro)) {
+                $intro = str_replace('*', '%', $intro);
+                $comparison = Criteria::LIKE;
+            }
+        }
 
         return $this->addUsingAlias(ClubinfoTableMap::COL_INTRO, $intro, $comparison);
     }

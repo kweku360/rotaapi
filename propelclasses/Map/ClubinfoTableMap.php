@@ -208,7 +208,7 @@ class ClubinfoTableMap extends TableMap
         $this->addColumn('contact2', 'Contact2', 'INTEGER', false, 15, null);
         $this->addColumn('sponsor', 'Sponsor', 'VARCHAR', true, 255, null);
         $this->addColumn('useruuid', 'Useruuid', 'VARCHAR', true, 255, null);
-        $this->addColumn('intro', 'Intro', 'BLOB', false, null, null);
+        $this->addColumn('intro', 'Intro', 'LONGVARCHAR', false, null, null);
         $this->addColumn('created', 'Created', 'INTEGER', true, null, null);
         $this->addColumn('modified', 'Modified', 'INTEGER', true, null, null);
     } // initialize()

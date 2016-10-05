@@ -23,7 +23,7 @@ CREATE TABLE `clubinfo`
     `contact2` INTEGER(15),
     `sponsor` VARCHAR(255) NOT NULL,
     `useruuid` VARCHAR(255) NOT NULL,
-    `intro` BLOB,
+    `intro` TEXT,
     `created` INTEGER NOT NULL,
     `modified` INTEGER NOT NULL,
     PRIMARY KEY (`id`)
@@ -67,9 +67,9 @@ CREATE TABLE `project`
     `country` VARCHAR(255) NOT NULL,
     `countrycode` VARCHAR(3) NOT NULL,
     `city` VARCHAR(255) NOT NULL,
-    `startdate` INTEGER NOT NULL,
+    `startdate` VARCHAR(255) NOT NULL,
     `clubuuid` VARCHAR(255) NOT NULL,
-    `enddate` INTEGER NOT NULL,
+    `enddate` VARCHAR(255) NOT NULL,
     `created` INTEGER NOT NULL,
     `modified` INTEGER NOT NULL,
     PRIMARY KEY (`id`)

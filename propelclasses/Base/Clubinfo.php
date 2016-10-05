@@ -133,7 +133,7 @@ abstract class Clubinfo implements ActiveRecordInterface
 
     /**
      * The value for the intro field.
-     * @var        resource
+     * @var        string
      */
     protected $intro;
 
@@ -497,7 +497,7 @@ abstract class Clubinfo implements ActiveRecordInterface
     /**
      * Get the [intro] column value.
      *
-     * @return resource
+     * @return string
      */
     public function getIntro()
     {
@@ -767,22 +767,19 @@ abstract class Clubinfo implements ActiveRecordInterface
     /**
      * Set the value of [intro] column.
      *
-     * @param resource $v new value
+     * @param string $v new value
      * @return $this|\Clubinfo The current object (for fluent API support)
      */
     public function setIntro($v)
     {
-        // Because BLOB columns are streams in PDO we have to assume that they are
-        // always modified when a new value is passed in.  For example, the contents
-        // of the stream itself may have changed externally.
-        if (!is_resource($v) && $v !== null) {
-            $this->intro = fopen('php://memory', 'r+');
-            fwrite($this->intro, $v);
-            rewind($this->intro);
-        } else { // it's already a stream
-            $this->intro = $v;
+        if ($v !== null) {
+            $v = (string) $v;
         }
-        $this->modifiedColumns[ClubinfoTableMap::COL_INTRO] = true;
+
+        if ($this->intro !== $v) {
+            $this->intro = $v;
+            $this->modifiedColumns[ClubinfoTableMap::COL_INTRO] = true;
+        }
 
         return $this;
     } // setIntro()
@@ -900,13 +897,7 @@ abstract class Clubinfo implements ActiveRecordInterface
             $this->useruuid = (null !== $col) ? (string) $col : null;
 
             $col = $row[TableMap::TYPE_NUM == $indexType ? 12 + $startcol : ClubinfoTableMap::translateFieldName('Intro', TableMap::TYPE_PHPNAME, $indexType)];
-            if (null !== $col) {
-                $this->intro = fopen('php://memory', 'r+');
-                fwrite($this->intro, $col);
-                rewind($this->intro);
-            } else {
-                $this->intro = null;
-            }
+            $this->intro = (null !== $col) ? (string) $col : null;
 
             $col = $row[TableMap::TYPE_NUM == $indexType ? 13 + $startcol : ClubinfoTableMap::translateFieldName('Created', TableMap::TYPE_PHPNAME, $indexType)];
             $this->created = (null !== $col) ? (int) $col : null;
@@ -1089,11 +1080,6 @@ abstract class Clubinfo implements ActiveRecordInterface
                 } else {
                     $affectedRows += $this->doUpdate($con);
                 }
-                // Rewind the intro LOB column, since PDO does not rewind after inserting value.
-                if ($this->intro !== null && is_resource($this->intro)) {
-                    rewind($this->intro);
-                }
-
                 $this->resetModified();
             }
 
@@ -1216,10 +1202,7 @@ abstract class Clubinfo implements ActiveRecordInterface
                         $stmt->bindValue($identifier, $this->useruuid, PDO::PARAM_STR);
                         break;
                     case 'intro':
-                        if (is_resource($this->intro)) {
-                            rewind($this->intro);
-                        }
-                        $stmt->bindValue($identifier, $this->intro, PDO::PARAM_LOB);
+                        $stmt->bindValue($identifier, $this->intro, PDO::PARAM_STR);
                         break;
                     case 'created':
                         $stmt->bindValue($identifier, $this->created, PDO::PARAM_INT);

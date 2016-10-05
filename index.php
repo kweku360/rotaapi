@@ -21,17 +21,17 @@ require_once 'config/config.php';
 //use Slim\Views\PhpRenderer;
 //
 ////new slim 3 style
-$app = new \Slim\App;
+//$app = new \Slim\App;
 
 //this configuration allows ue to see full error detail
 //not required for production
-//$configuration = [
-//    'settings' => [
-//        'displayErrorDetails' => true,
-//    ],
-//];
-//$c = new \Slim\Container($configuration);
-//$app = new \Slim\App($c);
+$configuration = [
+    'settings' => [
+        'displayErrorDetails' => true,
+    ],
+];
+$c = new \Slim\Container($configuration);
+$app = new \Slim\App($c);
 
 
 $routeFiles = (array) glob('routes/*.php');

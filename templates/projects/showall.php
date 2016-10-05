@@ -24,6 +24,7 @@ $projects = ProjectQuery::create()->find();
 $resultArray = Array();
 
 foreach($projects as $project) {
+    $outerarr = array();
 
     $item = Array();
     $item["id"] = $project->getId();
@@ -39,7 +40,7 @@ foreach($projects as $project) {
     $item["clubuuid"] = $project->getClubuuid();
     $item["created"] = $project->getCreated();
     $item["modified"] = $project->getModified();
-    $resultArray["projects"]["info"][] = $item;
+    $outerarr["info"] = $item;
 
     //we find clubinfo
     $clubinfo = ClubinfoQuery::create()->findOneByUseruuid( $project->getClubuuid());
@@ -60,14 +61,16 @@ foreach($projects as $project) {
         $item["sponsor"] = $clubinfo->getSponsor();
         $item["useruuid"] = $clubinfo->getUseruuid();
         $item["intro"] = $clubinfo->getIntro();
-//        $item["useruuid"] = $clubinfo->getUseruuid();
+
         $item["created"] = $clubinfo->getCreated();
         $item["modified"] = $clubinfo->getModified();
-        $resultArray["projects"]["clubinfo"][] = $item;
+        $outerarr["clubinfo"] = $item;
+
     }
     //we find all images
     $mediastore = MediastoreQuery::create()->findByUuid( $project->geturlcode());
     foreach($mediastore as $mediaitem) {
+        $mediaouterarr = array();
         $item = Array();
         $item["id"] = $mediaitem->getId();
         $item["title"] = $mediaitem->getTitle();
@@ -80,7 +83,8 @@ foreach($projects as $project) {
         $item["size"] = $mediaitem->getSize();
         $item["created"] = $mediaitem->getCreated();
         $item["modified"] = $mediaitem->getModified();
-        $resultArray["projects"]["media"][] = $item;
+        $mediaouterarr[] = $item;
+        $outerarr["media"] = $mediaouterarr;
     }
 
     //we find project display
@@ -98,7 +102,7 @@ foreach($projects as $project) {
         $item["clubuuid"] = $projectdisplay->getClubuuid();
         $item["created"] = $projectdisplay->getCreated();
         $item["modified"] = $projectdisplay->getModified();
-        $resultArray["projects"]["display"][] = $item;
+        $outerarr["display"] = $item;
     }
          //we find project account
     $projectaccount = ProjectaccountQuery::create()->findOneByProjectUuid( $project->getUuid());
@@ -116,9 +120,9 @@ foreach($projects as $project) {
         $item["created"] = $projectaccount->getCreated();
         $item["modified"] = $projectaccount->getModified();
 
-        $resultArray["projects"]["account"][] = $item;
+        $outerarr["account"] = $item;
     }
-
+    $resultArray["projects"][] = $outerarr;
 }
 $resultArray["meta"] = Array(
     "total" => $projects->count()

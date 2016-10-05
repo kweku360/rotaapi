@@ -24,6 +24,7 @@ $project = ProjectQuery::create()->findOneByUuid($data["id"]);
 $resultArray = Array();
 
 if($project != "") {
+    $outerarr = array();
 
     $item = Array();
     $item["id"] = $project->getId();
@@ -39,7 +40,7 @@ if($project != "") {
     $item["clubuuid"] = $project->getClubuuid();
     $item["created"] = $project->getCreated();
     $item["modified"] = $project->getModified();
-    $resultArray["projects"]["info"][] = $item;
+    $outerarr["info"] = $item;
 
     //we find clubinfo
     $clubinfo = ClubinfoQuery::create()->findOneByUseruuid( $project->getClubuuid());
@@ -60,14 +61,16 @@ if($project != "") {
         $item["sponsor"] = $clubinfo->getSponsor();
         $item["useruuid"] = $clubinfo->getUseruuid();
         $item["intro"] = $clubinfo->getIntro();
-//        $item["useruuid"] = $clubinfo->getUseruuid();
+
         $item["created"] = $clubinfo->getCreated();
         $item["modified"] = $clubinfo->getModified();
-        $resultArray["projects"]["clubinfo"][] = $item;
+        $outerarr["clubinfo"] = $item;
+
     }
     //we find all images
     $mediastore = MediastoreQuery::create()->findByUuid( $project->geturlcode());
     foreach($mediastore as $mediaitem) {
+        $mediaouterarr = array();
         $item = Array();
         $item["id"] = $mediaitem->getId();
         $item["title"] = $mediaitem->getTitle();
@@ -80,7 +83,8 @@ if($project != "") {
         $item["size"] = $mediaitem->getSize();
         $item["created"] = $mediaitem->getCreated();
         $item["modified"] = $mediaitem->getModified();
-        $resultArray["projects"]["media"][] = $item;
+        $mediaouterarr[] = $item;
+        $outerarr["media"] = $mediaouterarr;
     }
 
     //we find project display
@@ -98,7 +102,7 @@ if($project != "") {
         $item["clubuuid"] = $projectdisplay->getClubuuid();
         $item["created"] = $projectdisplay->getCreated();
         $item["modified"] = $projectdisplay->getModified();
-        $resultArray["projects"]["display"][] = $item;
+        $outerarr["display"] = $item;
     }
     //we find project account
     $projectaccount = ProjectaccountQuery::create()->findOneByProjectUuid( $project->getUuid());
@@ -116,10 +120,108 @@ if($project != "") {
         $item["created"] = $projectaccount->getCreated();
         $item["modified"] = $projectaccount->getModified();
 
-        $resultArray["projects"]["account"][] = $item;
+        $outerarr["account"] = $item;
     }
+    $resultArray["projects"][] = $outerarr;
 
 }
+//if($project != "") {
+//
+//    $item = Array();
+//    $item["id"] = $project->getId();
+//    $item["uuid"] = $project->getUuid();
+//    $item["name"] = $project->getName();
+//    $item["urlcode"] = $project->geturlcode();
+//    $item["status"] = $project->getstatus();
+//    $item["countrycode"] = $project->getCountrycode();
+//    $item["country"] = $project->getCountry();
+//    $item["city"] = $project->getCity();
+//    $item["startdate"] = $project->getStartdate();
+//    $item["enddate"] = $project->getenddate();
+//    $item["clubuuid"] = $project->getClubuuid();
+//    $item["created"] = $project->getCreated();
+//    $item["modified"] = $project->getModified();
+//    $resultArray["projects"]["info"][] = $item;
+//
+//    //we find clubinfo
+//    $clubinfo = ClubinfoQuery::create()->findOneByUseruuid( $project->getClubuuid());
+//    if($clubinfo != "") {
+//
+//        $item = Array();
+//        $item["id"] = $clubinfo->getId();
+//
+//        $item["clubname"] = $clubinfo->getClubname();
+//        $item["president"] = $clubinfo->getPresident();
+//        $item["country"] = $clubinfo->getCountry();
+//        $item["countrycode"] = $clubinfo->getCountrycode();
+//        $item["location"] = $clubinfo->getLocation();
+//        $item["city"] = $clubinfo->getCity();
+//        $item["district"] = $clubinfo->getDistrict();
+//        $item["contact1"] = $clubinfo->getContact2();
+//        $item["contact2"] = $clubinfo->getContact2();
+//        $item["sponsor"] = $clubinfo->getSponsor();
+//        $item["useruuid"] = $clubinfo->getUseruuid();
+//        $item["intro"] = $clubinfo->getIntro();
+////        $item["useruuid"] = $clubinfo->getUseruuid();
+//        $item["created"] = $clubinfo->getCreated();
+//        $item["modified"] = $clubinfo->getModified();
+//        $resultArray["projects"]["clubinfo"][] = $item;
+//    }
+//    //we find all images
+//    $mediastore = MediastoreQuery::create()->findByUuid( $project->geturlcode());
+//    foreach($mediastore as $mediaitem) {
+//        $item = Array();
+//        $item["id"] = $mediaitem->getId();
+//        $item["title"] = $mediaitem->getTitle();
+//        $item["description"] = $mediaitem->getDescription();
+//        $item["type"] = $mediaitem->getType();
+//        $item["filename"] = $mediaitem->getFilename();
+//        $item["ext"] = $mediaitem->getExt();
+//        $item["uuid"] = $mediaitem->getUuid();
+//        $item["mime"] = $mediaitem->getMime();
+//        $item["size"] = $mediaitem->getSize();
+//        $item["created"] = $mediaitem->getCreated();
+//        $item["modified"] = $mediaitem->getModified();
+//        $resultArray["projects"]["media"][] = $item;
+//    }
+//
+//    //we find project display
+//    $projectdisplay = ProjectdisplayQuery::create()->findOneByProjectUuid( $project->getUuid());
+//    if($projectdisplay != "") {
+//
+//        $item = Array();
+//        $item["id"] = $projectdisplay->getId();
+//        $item["uuid"] = $projectdisplay->getUuid();
+//        $item["tagline"] = $projectdisplay->getTagline();
+//        $item["description"] = $projectdisplay->getdescription();
+//        $item["category"] = $projectdisplay->getCategory();
+//        $item["sociallinks"] = $projectdisplay->getSociallinks();
+//        $item["projectuuid"] = $projectdisplay->getProjectUuid();
+//        $item["clubuuid"] = $projectdisplay->getClubuuid();
+//        $item["created"] = $projectdisplay->getCreated();
+//        $item["modified"] = $projectdisplay->getModified();
+//        $resultArray["projects"]["display"][] = $item;
+//    }
+//    //we find project account
+//    $projectaccount = ProjectaccountQuery::create()->findOneByProjectUuid( $project->getUuid());
+//    if($projectaccount != ""){
+//        $item = Array();
+//        $item["id"] = $projectaccount->getId();
+//        $item["uuid"] = $projectaccount->getUuid();
+//        $item["targetamt"] = $projectaccount->getTargetamt();
+//        $item["Totaltargetamt"] = $projectaccount->getTotalTargetamt();
+//        $item["amtoffsite"] = $projectaccount->getAmtoffsite();
+//        $item["amtraised"] = $projectaccount->getAmtraised();
+//        $item["donorcount"] = $projectaccount->getDonorcount();
+//        $item["projectuuid"] = $projectaccount->getProjectUuid();
+//        $item["clubuuid"] = $projectaccount->getClubuuid();
+//        $item["created"] = $projectaccount->getCreated();
+//        $item["modified"] = $projectaccount->getModified();
+//
+//        $resultArray["projects"]["account"][] = $item;
+//    }
+//
+//}
 $resultArray["meta"] = Array(
    // "total" => $projects->count()
 );

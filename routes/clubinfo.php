@@ -24,7 +24,12 @@ $app->post('/clubinfo', function (Request $request, Response $response)  use($ap
     $response = $this->view->render($response, "/clubinfo/store.php", ["vars" => $data]);
     return $response;
 });
-
+$app->get('/club/{id}', function (Request $request, Response $response,$args)  use($app){
+    $data = $request->getParsedBody();
+    // var_dump($args);
+    $response = $this->view->render($response, "/clubinfo/show.php", ["vars" => $data,"id"=>$args['id']]);
+    return $response;
+});
 
 //
 //$app->add(function (Request $request,Response $response, $next) {

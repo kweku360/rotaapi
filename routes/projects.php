@@ -35,16 +35,14 @@ $app->get('/project', function (Request $request, Response $response)  use($app)
 $app->get('/project/club/{id}', function (Request $request, Response $response,$args)  use($app){
     $data = $request->getParsedBody();
     // var_dump($args);
-    $response = $this->view->
-    render($response, "/projects/showbyclub.php", ["vars" => $data,"id"=>$args['id']]);
+    $response = $this->view->render($response, "/projects/showbyclub.php", ["vars" => $data,"id"=>$args['id']]);
     return $response;
 });
 
 $app->get('/project/{id}', function (Request $request, Response $response,$args)  use($app){
     $data = $request->getParsedBody();
     // var_dump($args);
-    $response = $this->view->
-    render($response, "/projects/showone.php", ["vars" => $data,"id"=>$args['id']]);
+    $response = $this->view->render($response, "/projects/showone.php", ["vars" => $data,"id"=>$args['id']]);
     return $response;
 });
 
