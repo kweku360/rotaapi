@@ -40,6 +40,7 @@ $projectacc = new Projectaccount();
 try{$projectacc->setUuid(uniqid());}catch (Exception $x){} // uuid
 try{$projectacc->setTargetamt($data["vars"]["targetamt"]);}catch (Exception $x){} // target amt
 try{$projectacc->setTotalTargetamt(0);}catch (Exception $x){} //total target amt
+try{$projectacc->setCurrency($data["vars"]["currency"]);}catch (Exception $x){} //currency
 try{$projectacc->setAmtoffsite(0);}catch (Exception $x){} // amt offsite
 try{$projectacc->setAmtraised(0);}catch (Exception $x){} // amt raised
 try{$projectacc->setClubuuid($data["vars"]["clubuuid"]);}catch (Exception $x){} // club uuid
@@ -62,6 +63,11 @@ try{$projectdis->setProjectUuid($project->getUuid());}catch (Exception $x){} // 
 try{$projectdis->setCreated(time());}catch (Exception $x){}
 try{$projectdis->setModified(time());}catch (Exception $x){}
 $projectdis->save();
+
+//lets create an empty project stats field for the particular project
+$projectStats = new ProjectStatistics();
+
+$projectStats->create($project->getUuid(),$project->getenddate());
 
 $item = Array();
 $item["message"] = "Save Successful";

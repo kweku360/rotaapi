@@ -19,12 +19,15 @@ require_once 'config/config.php';
 
 //lets create a new clubinfo item
 
-$project = ProjectQuery::create()->findOneByUuid($data["id"]);
+$project = ProjectQuery::create()->findOneByurlcode($data["id"]);
 //$defendants = PlaintiffsQuery::create()->findBySuitnumber("A1220");
 $resultArray = Array();
+$countval = 0;
 
 if($project != "") {
     $outerarr = array();
+    $countval = 1;
+
 
     $item = Array();
     $item["id"] = $project->getId();
@@ -223,7 +226,7 @@ if($project != "") {
 //
 //}
 $resultArray["meta"] = Array(
-   // "total" => $projects->count()
+   "total" => $countval
 );
 
 echo json_encode($resultArray,JSON_PRETTY_PRINT);

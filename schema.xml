@@ -60,6 +60,7 @@
         <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
         <column name="uuid" phpName="Uuid" type="VARCHAR" size="255" required="true"/>
         <column name="targetamt" phpName="Targetamt" type="INTEGER" required="true"/>
+        <column name="currency" phpName="Currency" type="VARCHAR" size="255" required="true"/>
         <column name="Totaltargetamt" phpName="TotalTargetamt" type="INTEGER" required="true"/>
         <column name="amtoffsite" phpName="Amtoffsite" type="INTEGER" required="true"/>
         <column name="amtraised" phpName="Amtraised" type="INTEGER" required="true"/>
@@ -84,6 +85,36 @@
         <column name="clubuuid" phpName="Clubuuid" type="VARCHAR" size="255" required="true"/>
         <column name="created" phpName="Created" type="INTEGER" required="true"/>
         <column name="modified" phpName="Modified" type="INTEGER" required="true"/>
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+        </vendor>
+    </table>
+    <table name="projectstat" idMethod="native" phpName="Projectstat">
+        <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="uuid" phpName="Uuid" type="VARCHAR" size="255" required="true"/>
+        <column name="donorcount" phpName="Donorcount" type="INTEGER"/>
+        <column name="views" phpName="views" type="INTEGER"/>
+        <column name="likes" phpName="Likes" type="INTEGER"/>
+        <column name="share" phpName="Shares" type="INTEGER"/>
+        <column name="updatecount" phpName="Updatecount" type="INTEGER"/>
+        <column name="commentscount" phpName="Commentscount" type="INTEGER"/>
+        <column name="fundedpercent" phpName="Fundedpercent" type="INTEGER"/>
+        <column name="enddate" phpName="enddate" type="VARCHAR" size="255"/>
+        <column name="projectuuid" phpName="ProjectUuid" type="VARCHAR" size="255" required="true"/>
+        <column name="created" phpName="Created" type="INTEGER" required="true"/>
+        <vendor type="mysql">
+            <parameter name="Engine" value="InnoDB"/>
+        </vendor>
+    </table>
+    <table name="projectbadge" idMethod="native" phpName="Projectbadge">
+        <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+        <column name="uuid" phpName="Uuid" type="VARCHAR" size="255" required="true"/>
+        <column name="badgeid" phpName="Badgeid" type="INTEGER"/>
+        <column name="badgename" phpName="Badgename" type="VARCHAR" size="255"/>
+        <column name="notes" phpName="Notes" type="VARCHAR" size="255"/>
+        <column name="expiry" phpName="Expiry" type="INTEGER"/>
+        <column name="projectuuid" phpName="ProjectUuid" type="VARCHAR" size="255" required="true"/>
+        <column name="created" phpName="Created" type="INTEGER" required="true"/>
         <vendor type="mysql">
             <parameter name="Engine" value="InnoDB"/>
         </vendor>

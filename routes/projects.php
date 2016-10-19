@@ -45,6 +45,29 @@ $app->get('/project/{id}', function (Request $request, Response $response,$args)
     $response = $this->view->render($response, "/projects/showone.php", ["vars" => $data,"id"=>$args['id']]);
     return $response;
 });
+//update project info
+$app->post('/project/{id}', function (Request $request, Response $response,$args)  use($app){
+    $data = $request->getParsedBody();
+    // var_dump($data);
+    $response = $this->view->render($response, "/projects/update.php", ["vars" => $data,"id"=>$args['id']]);
+    return $response;
+});
+//update project statistics
+$app->post('/project/stats/{id}', function (Request $request, Response $response,$args)  use($app){
+    $data = $request->getParsedBody();
+    // var_dump($data);
+    $response = $this->view->render($response, "/projects/statisticsupdate.php", ["vars" => $data,"id"=>$args['id']]);
+    return $response;
+});
+
+//rouutes for various project variations
+//1. recommended projects
+//$app->post('/project/recommended', function (Request $request, Response $response,$args)  use($app){
+//    $data = $request->getParsedBody();
+//    // var_dump($data);
+//    $response = $this->view->render($response, "/projects/statisticsupdate.php", ["vars" => $data,"id"=>$args['id']]);
+//    return $response;
+//});
 
 
 //

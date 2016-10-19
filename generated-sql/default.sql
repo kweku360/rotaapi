@@ -86,6 +86,7 @@ CREATE TABLE `projectaccount`
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `uuid` VARCHAR(255) NOT NULL,
     `targetamt` INTEGER NOT NULL,
+    `currency` VARCHAR(255) NOT NULL,
     `Totaltargetamt` INTEGER NOT NULL,
     `amtoffsite` INTEGER NOT NULL,
     `amtraised` INTEGER NOT NULL,
@@ -116,6 +117,48 @@ CREATE TABLE `projectdisplay`
     `clubuuid` VARCHAR(255) NOT NULL,
     `created` INTEGER NOT NULL,
     `modified` INTEGER NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- projectstat
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `projectstat`;
+
+CREATE TABLE `projectstat`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `uuid` VARCHAR(255) NOT NULL,
+    `donorcount` INTEGER,
+    `views` INTEGER,
+    `likes` INTEGER,
+    `share` INTEGER,
+    `updatecount` INTEGER,
+    `commentscount` INTEGER,
+    `fundedpercent` INTEGER,
+    `enddate` VARCHAR(255),
+    `projectuuid` VARCHAR(255) NOT NULL,
+    `created` INTEGER NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+-- ---------------------------------------------------------------------
+-- projectbadge
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `projectbadge`;
+
+CREATE TABLE `projectbadge`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `uuid` VARCHAR(255) NOT NULL,
+    `badgeid` INTEGER,
+    `badgename` VARCHAR(255),
+    `notes` VARCHAR(255),
+    `expiry` INTEGER,
+    `projectuuid` VARCHAR(255) NOT NULL,
+    `created` INTEGER NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 

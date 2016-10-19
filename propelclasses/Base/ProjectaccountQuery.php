@@ -22,6 +22,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildProjectaccountQuery orderById($order = Criteria::ASC) Order by the id column
  * @method     ChildProjectaccountQuery orderByUuid($order = Criteria::ASC) Order by the uuid column
  * @method     ChildProjectaccountQuery orderByTargetamt($order = Criteria::ASC) Order by the targetamt column
+ * @method     ChildProjectaccountQuery orderByCurrency($order = Criteria::ASC) Order by the currency column
  * @method     ChildProjectaccountQuery orderByTotalTargetamt($order = Criteria::ASC) Order by the Totaltargetamt column
  * @method     ChildProjectaccountQuery orderByAmtoffsite($order = Criteria::ASC) Order by the amtoffsite column
  * @method     ChildProjectaccountQuery orderByAmtraised($order = Criteria::ASC) Order by the amtraised column
@@ -34,6 +35,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildProjectaccountQuery groupById() Group by the id column
  * @method     ChildProjectaccountQuery groupByUuid() Group by the uuid column
  * @method     ChildProjectaccountQuery groupByTargetamt() Group by the targetamt column
+ * @method     ChildProjectaccountQuery groupByCurrency() Group by the currency column
  * @method     ChildProjectaccountQuery groupByTotalTargetamt() Group by the Totaltargetamt column
  * @method     ChildProjectaccountQuery groupByAmtoffsite() Group by the amtoffsite column
  * @method     ChildProjectaccountQuery groupByAmtraised() Group by the amtraised column
@@ -57,6 +59,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildProjectaccount findOneById(int $id) Return the first ChildProjectaccount filtered by the id column
  * @method     ChildProjectaccount findOneByUuid(string $uuid) Return the first ChildProjectaccount filtered by the uuid column
  * @method     ChildProjectaccount findOneByTargetamt(int $targetamt) Return the first ChildProjectaccount filtered by the targetamt column
+ * @method     ChildProjectaccount findOneByCurrency(string $currency) Return the first ChildProjectaccount filtered by the currency column
  * @method     ChildProjectaccount findOneByTotalTargetamt(int $Totaltargetamt) Return the first ChildProjectaccount filtered by the Totaltargetamt column
  * @method     ChildProjectaccount findOneByAmtoffsite(int $amtoffsite) Return the first ChildProjectaccount filtered by the amtoffsite column
  * @method     ChildProjectaccount findOneByAmtraised(int $amtraised) Return the first ChildProjectaccount filtered by the amtraised column
@@ -72,6 +75,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildProjectaccount requireOneById(int $id) Return the first ChildProjectaccount filtered by the id column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildProjectaccount requireOneByUuid(string $uuid) Return the first ChildProjectaccount filtered by the uuid column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildProjectaccount requireOneByTargetamt(int $targetamt) Return the first ChildProjectaccount filtered by the targetamt column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildProjectaccount requireOneByCurrency(string $currency) Return the first ChildProjectaccount filtered by the currency column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildProjectaccount requireOneByTotalTargetamt(int $Totaltargetamt) Return the first ChildProjectaccount filtered by the Totaltargetamt column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildProjectaccount requireOneByAmtoffsite(int $amtoffsite) Return the first ChildProjectaccount filtered by the amtoffsite column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildProjectaccount requireOneByAmtraised(int $amtraised) Return the first ChildProjectaccount filtered by the amtraised column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
@@ -85,6 +89,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildProjectaccount[]|ObjectCollection findById(int $id) Return ChildProjectaccount objects filtered by the id column
  * @method     ChildProjectaccount[]|ObjectCollection findByUuid(string $uuid) Return ChildProjectaccount objects filtered by the uuid column
  * @method     ChildProjectaccount[]|ObjectCollection findByTargetamt(int $targetamt) Return ChildProjectaccount objects filtered by the targetamt column
+ * @method     ChildProjectaccount[]|ObjectCollection findByCurrency(string $currency) Return ChildProjectaccount objects filtered by the currency column
  * @method     ChildProjectaccount[]|ObjectCollection findByTotalTargetamt(int $Totaltargetamt) Return ChildProjectaccount objects filtered by the Totaltargetamt column
  * @method     ChildProjectaccount[]|ObjectCollection findByAmtoffsite(int $amtoffsite) Return ChildProjectaccount objects filtered by the amtoffsite column
  * @method     ChildProjectaccount[]|ObjectCollection findByAmtraised(int $amtraised) Return ChildProjectaccount objects filtered by the amtraised column
@@ -185,7 +190,7 @@ abstract class ProjectaccountQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT id, uuid, targetamt, Totaltargetamt, amtoffsite, amtraised, donorcount, projectuuid, clubuuid, created, modified FROM projectaccount WHERE id = :p0';
+        $sql = 'SELECT id, uuid, targetamt, currency, Totaltargetamt, amtoffsite, amtraised, donorcount, projectuuid, clubuuid, created, modified FROM projectaccount WHERE id = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -384,6 +389,35 @@ abstract class ProjectaccountQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(ProjectaccountTableMap::COL_TARGETAMT, $targetamt, $comparison);
+    }
+
+    /**
+     * Filter the query on the currency column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByCurrency('fooValue');   // WHERE currency = 'fooValue'
+     * $query->filterByCurrency('%fooValue%'); // WHERE currency LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $currency The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return $this|ChildProjectaccountQuery The current query, for fluid interface
+     */
+    public function filterByCurrency($currency = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($currency)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $currency)) {
+                $currency = str_replace('*', '%', $currency);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(ProjectaccountTableMap::COL_CURRENCY, $currency, $comparison);
     }
 
     /**

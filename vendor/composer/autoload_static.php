@@ -107,6 +107,7 @@ class ComposerStaticInitd0f85a6e2188fd4deda5bfb987020241
     );
 
     public static $classMap = array (
+        'Badge' => __DIR__ . '/../..' . '/classes/projectbadge.php',
         'Base\\Clubinfo' => __DIR__ . '/../..' . '/propelclasses/Base/Clubinfo.php',
         'Base\\ClubinfoQuery' => __DIR__ . '/../..' . '/propelclasses/Base/ClubinfoQuery.php',
         'Base\\Mediastore' => __DIR__ . '/../..' . '/propelclasses/Base/Mediastore.php',
@@ -115,8 +116,12 @@ class ComposerStaticInitd0f85a6e2188fd4deda5bfb987020241
         'Base\\ProjectQuery' => __DIR__ . '/../..' . '/propelclasses/Base/ProjectQuery.php',
         'Base\\Projectaccount' => __DIR__ . '/../..' . '/propelclasses/Base/Projectaccount.php',
         'Base\\ProjectaccountQuery' => __DIR__ . '/../..' . '/propelclasses/Base/ProjectaccountQuery.php',
+        'Base\\Projectbadge' => __DIR__ . '/../..' . '/propelclasses/Base/Projectbadge.php',
+        'Base\\ProjectbadgeQuery' => __DIR__ . '/../..' . '/propelclasses/Base/ProjectbadgeQuery.php',
         'Base\\Projectdisplay' => __DIR__ . '/../..' . '/propelclasses/Base/Projectdisplay.php',
         'Base\\ProjectdisplayQuery' => __DIR__ . '/../..' . '/propelclasses/Base/ProjectdisplayQuery.php',
+        'Base\\Projectstat' => __DIR__ . '/../..' . '/propelclasses/Base/Projectstat.php',
+        'Base\\ProjectstatQuery' => __DIR__ . '/../..' . '/propelclasses/Base/ProjectstatQuery.php',
         'Clubinfo' => __DIR__ . '/../..' . '/propelclasses/Clubinfo.php',
         'ClubinfoQuery' => __DIR__ . '/../..' . '/propelclasses/ClubinfoQuery.php',
         'Emailutils' => __DIR__ . '/../..' . '/classes/Emailutils.php',
@@ -124,15 +129,23 @@ class ComposerStaticInitd0f85a6e2188fd4deda5bfb987020241
         'Map\\MediastoreTableMap' => __DIR__ . '/../..' . '/propelclasses/Map/MediastoreTableMap.php',
         'Map\\ProjectTableMap' => __DIR__ . '/../..' . '/propelclasses/Map/ProjectTableMap.php',
         'Map\\ProjectaccountTableMap' => __DIR__ . '/../..' . '/propelclasses/Map/ProjectaccountTableMap.php',
+        'Map\\ProjectbadgeTableMap' => __DIR__ . '/../..' . '/propelclasses/Map/ProjectbadgeTableMap.php',
         'Map\\ProjectdisplayTableMap' => __DIR__ . '/../..' . '/propelclasses/Map/ProjectdisplayTableMap.php',
+        'Map\\ProjectstatTableMap' => __DIR__ . '/../..' . '/propelclasses/Map/ProjectstatTableMap.php',
         'Mediastore' => __DIR__ . '/../..' . '/propelclasses/Mediastore.php',
         'MediastoreQuery' => __DIR__ . '/../..' . '/propelclasses/MediastoreQuery.php',
         'Project' => __DIR__ . '/../..' . '/propelclasses/Project.php',
+        'ProjectData' => __DIR__ . '/../..' . '/classes/projects.php',
         'ProjectQuery' => __DIR__ . '/../..' . '/propelclasses/ProjectQuery.php',
+        'ProjectStatistics' => __DIR__ . '/../..' . '/classes/projectstat.php',
         'Projectaccount' => __DIR__ . '/../..' . '/propelclasses/Projectaccount.php',
         'ProjectaccountQuery' => __DIR__ . '/../..' . '/propelclasses/ProjectaccountQuery.php',
+        'Projectbadge' => __DIR__ . '/../..' . '/propelclasses/Projectbadge.php',
+        'ProjectbadgeQuery' => __DIR__ . '/../..' . '/propelclasses/ProjectbadgeQuery.php',
         'Projectdisplay' => __DIR__ . '/../..' . '/propelclasses/Projectdisplay.php',
         'ProjectdisplayQuery' => __DIR__ . '/../..' . '/propelclasses/ProjectdisplayQuery.php',
+        'Projectstat' => __DIR__ . '/../..' . '/propelclasses/Projectstat.php',
+        'ProjectstatQuery' => __DIR__ . '/../..' . '/propelclasses/ProjectstatQuery.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

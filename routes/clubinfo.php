@@ -31,7 +31,15 @@ $app->get('/club/{id}', function (Request $request, Response $response,$args)  u
     return $response;
 });
 
-//
+//update
+$app->post('/clubinfo/{id}', function (Request $request, Response $response,$args)  use($app){
+    $data = $request->getParsedBody();
+    // var_dump($data);
+    $response = $this->view->render($response, "/clubinfo/update.php", ["vars" => $data,"id"=>$args['id']]);
+    return $response;
+});
+
+
 //$app->add(function (Request $request,Response $response, $next) {
 //    $response->getBody()->write('BEFORE');
 //    $response = $next($request, $response);

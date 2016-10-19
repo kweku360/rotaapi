@@ -41,7 +41,10 @@ require_once 'config/config.php';
         $item["modified"] = $clubinfo->getModified();
         $resultArray["clubinfo"]= $item;
     }
-$resultArray["meta"] = $item;
+$resultArray["meta"] = Array(
+    "code" => 200,
+    'message' => "success"
+);
 
 echo json_encode($resultArray,JSON_PRETTY_PRINT);
 

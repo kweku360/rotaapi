@@ -2,8 +2,8 @@
 
 namespace Map;
 
-use \Projectaccount;
-use \ProjectaccountQuery;
+use \Projectbadge;
+use \ProjectbadgeQuery;
 use Propel\Runtime\Propel;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\ActiveQuery\InstancePoolTrait;
@@ -16,7 +16,7 @@ use Propel\Runtime\Map\TableMapTrait;
 
 
 /**
- * This class defines the structure of the 'projectaccount' table.
+ * This class defines the structure of the 'projectbadge' table.
  *
  *
  *
@@ -26,7 +26,7 @@ use Propel\Runtime\Map\TableMapTrait;
  * (i.e. if it's a text column type).
  *
  */
-class ProjectaccountTableMap extends TableMap
+class ProjectbadgeTableMap extends TableMap
 {
     use InstancePoolTrait;
     use TableMapTrait;
@@ -34,7 +34,7 @@ class ProjectaccountTableMap extends TableMap
     /**
      * The (dot-path) name of this class
      */
-    const CLASS_NAME = 'propelclasses.Map.ProjectaccountTableMap';
+    const CLASS_NAME = 'propelclasses.Map.ProjectbadgeTableMap';
 
     /**
      * The default database name for this class
@@ -44,22 +44,22 @@ class ProjectaccountTableMap extends TableMap
     /**
      * The table name for this class
      */
-    const TABLE_NAME = 'projectaccount';
+    const TABLE_NAME = 'projectbadge';
 
     /**
      * The related Propel class for this table
      */
-    const OM_CLASS = '\\Projectaccount';
+    const OM_CLASS = '\\Projectbadge';
 
     /**
      * A class that can be returned by this tableMap
      */
-    const CLASS_DEFAULT = 'propelclasses.Projectaccount';
+    const CLASS_DEFAULT = 'propelclasses.Projectbadge';
 
     /**
      * The total number of columns
      */
-    const NUM_COLUMNS = 12;
+    const NUM_COLUMNS = 8;
 
     /**
      * The number of lazy-loaded columns
@@ -69,67 +69,47 @@ class ProjectaccountTableMap extends TableMap
     /**
      * The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS)
      */
-    const NUM_HYDRATE_COLUMNS = 12;
+    const NUM_HYDRATE_COLUMNS = 8;
 
     /**
      * the column name for the id field
      */
-    const COL_ID = 'projectaccount.id';
+    const COL_ID = 'projectbadge.id';
 
     /**
      * the column name for the uuid field
      */
-    const COL_UUID = 'projectaccount.uuid';
+    const COL_UUID = 'projectbadge.uuid';
 
     /**
-     * the column name for the targetamt field
+     * the column name for the badgeid field
      */
-    const COL_TARGETAMT = 'projectaccount.targetamt';
+    const COL_BADGEID = 'projectbadge.badgeid';
 
     /**
-     * the column name for the currency field
+     * the column name for the badgename field
      */
-    const COL_CURRENCY = 'projectaccount.currency';
+    const COL_BADGENAME = 'projectbadge.badgename';
 
     /**
-     * the column name for the Totaltargetamt field
+     * the column name for the notes field
      */
-    const COL_TOTALTARGETAMT = 'projectaccount.Totaltargetamt';
+    const COL_NOTES = 'projectbadge.notes';
 
     /**
-     * the column name for the amtoffsite field
+     * the column name for the expiry field
      */
-    const COL_AMTOFFSITE = 'projectaccount.amtoffsite';
-
-    /**
-     * the column name for the amtraised field
-     */
-    const COL_AMTRAISED = 'projectaccount.amtraised';
-
-    /**
-     * the column name for the donorcount field
-     */
-    const COL_DONORCOUNT = 'projectaccount.donorcount';
+    const COL_EXPIRY = 'projectbadge.expiry';
 
     /**
      * the column name for the projectuuid field
      */
-    const COL_PROJECTUUID = 'projectaccount.projectuuid';
-
-    /**
-     * the column name for the clubuuid field
-     */
-    const COL_CLUBUUID = 'projectaccount.clubuuid';
+    const COL_PROJECTUUID = 'projectbadge.projectuuid';
 
     /**
      * the column name for the created field
      */
-    const COL_CREATED = 'projectaccount.created';
-
-    /**
-     * the column name for the modified field
-     */
-    const COL_MODIFIED = 'projectaccount.modified';
+    const COL_CREATED = 'projectbadge.created';
 
     /**
      * The default string format for model objects of the related table
@@ -143,11 +123,11 @@ class ProjectaccountTableMap extends TableMap
      * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        self::TYPE_PHPNAME       => array('Id', 'Uuid', 'Targetamt', 'Currency', 'TotalTargetamt', 'Amtoffsite', 'Amtraised', 'Donorcount', 'ProjectUuid', 'Clubuuid', 'Created', 'Modified', ),
-        self::TYPE_CAMELNAME     => array('id', 'uuid', 'targetamt', 'currency', 'totalTargetamt', 'amtoffsite', 'amtraised', 'donorcount', 'projectUuid', 'clubuuid', 'created', 'modified', ),
-        self::TYPE_COLNAME       => array(ProjectaccountTableMap::COL_ID, ProjectaccountTableMap::COL_UUID, ProjectaccountTableMap::COL_TARGETAMT, ProjectaccountTableMap::COL_CURRENCY, ProjectaccountTableMap::COL_TOTALTARGETAMT, ProjectaccountTableMap::COL_AMTOFFSITE, ProjectaccountTableMap::COL_AMTRAISED, ProjectaccountTableMap::COL_DONORCOUNT, ProjectaccountTableMap::COL_PROJECTUUID, ProjectaccountTableMap::COL_CLUBUUID, ProjectaccountTableMap::COL_CREATED, ProjectaccountTableMap::COL_MODIFIED, ),
-        self::TYPE_FIELDNAME     => array('id', 'uuid', 'targetamt', 'currency', 'Totaltargetamt', 'amtoffsite', 'amtraised', 'donorcount', 'projectuuid', 'clubuuid', 'created', 'modified', ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, )
+        self::TYPE_PHPNAME       => array('Id', 'Uuid', 'Badgeid', 'Badgename', 'Notes', 'Expiry', 'ProjectUuid', 'Created', ),
+        self::TYPE_CAMELNAME     => array('id', 'uuid', 'badgeid', 'badgename', 'notes', 'expiry', 'projectUuid', 'created', ),
+        self::TYPE_COLNAME       => array(ProjectbadgeTableMap::COL_ID, ProjectbadgeTableMap::COL_UUID, ProjectbadgeTableMap::COL_BADGEID, ProjectbadgeTableMap::COL_BADGENAME, ProjectbadgeTableMap::COL_NOTES, ProjectbadgeTableMap::COL_EXPIRY, ProjectbadgeTableMap::COL_PROJECTUUID, ProjectbadgeTableMap::COL_CREATED, ),
+        self::TYPE_FIELDNAME     => array('id', 'uuid', 'badgeid', 'badgename', 'notes', 'expiry', 'projectuuid', 'created', ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, )
     );
 
     /**
@@ -157,11 +137,11 @@ class ProjectaccountTableMap extends TableMap
      * e.g. self::$fieldKeys[self::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        self::TYPE_PHPNAME       => array('Id' => 0, 'Uuid' => 1, 'Targetamt' => 2, 'Currency' => 3, 'TotalTargetamt' => 4, 'Amtoffsite' => 5, 'Amtraised' => 6, 'Donorcount' => 7, 'ProjectUuid' => 8, 'Clubuuid' => 9, 'Created' => 10, 'Modified' => 11, ),
-        self::TYPE_CAMELNAME     => array('id' => 0, 'uuid' => 1, 'targetamt' => 2, 'currency' => 3, 'totalTargetamt' => 4, 'amtoffsite' => 5, 'amtraised' => 6, 'donorcount' => 7, 'projectUuid' => 8, 'clubuuid' => 9, 'created' => 10, 'modified' => 11, ),
-        self::TYPE_COLNAME       => array(ProjectaccountTableMap::COL_ID => 0, ProjectaccountTableMap::COL_UUID => 1, ProjectaccountTableMap::COL_TARGETAMT => 2, ProjectaccountTableMap::COL_CURRENCY => 3, ProjectaccountTableMap::COL_TOTALTARGETAMT => 4, ProjectaccountTableMap::COL_AMTOFFSITE => 5, ProjectaccountTableMap::COL_AMTRAISED => 6, ProjectaccountTableMap::COL_DONORCOUNT => 7, ProjectaccountTableMap::COL_PROJECTUUID => 8, ProjectaccountTableMap::COL_CLUBUUID => 9, ProjectaccountTableMap::COL_CREATED => 10, ProjectaccountTableMap::COL_MODIFIED => 11, ),
-        self::TYPE_FIELDNAME     => array('id' => 0, 'uuid' => 1, 'targetamt' => 2, 'currency' => 3, 'Totaltargetamt' => 4, 'amtoffsite' => 5, 'amtraised' => 6, 'donorcount' => 7, 'projectuuid' => 8, 'clubuuid' => 9, 'created' => 10, 'modified' => 11, ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, )
+        self::TYPE_PHPNAME       => array('Id' => 0, 'Uuid' => 1, 'Badgeid' => 2, 'Badgename' => 3, 'Notes' => 4, 'Expiry' => 5, 'ProjectUuid' => 6, 'Created' => 7, ),
+        self::TYPE_CAMELNAME     => array('id' => 0, 'uuid' => 1, 'badgeid' => 2, 'badgename' => 3, 'notes' => 4, 'expiry' => 5, 'projectUuid' => 6, 'created' => 7, ),
+        self::TYPE_COLNAME       => array(ProjectbadgeTableMap::COL_ID => 0, ProjectbadgeTableMap::COL_UUID => 1, ProjectbadgeTableMap::COL_BADGEID => 2, ProjectbadgeTableMap::COL_BADGENAME => 3, ProjectbadgeTableMap::COL_NOTES => 4, ProjectbadgeTableMap::COL_EXPIRY => 5, ProjectbadgeTableMap::COL_PROJECTUUID => 6, ProjectbadgeTableMap::COL_CREATED => 7, ),
+        self::TYPE_FIELDNAME     => array('id' => 0, 'uuid' => 1, 'badgeid' => 2, 'badgename' => 3, 'notes' => 4, 'expiry' => 5, 'projectuuid' => 6, 'created' => 7, ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, )
     );
 
     /**
@@ -174,25 +154,21 @@ class ProjectaccountTableMap extends TableMap
     public function initialize()
     {
         // attributes
-        $this->setName('projectaccount');
-        $this->setPhpName('Projectaccount');
+        $this->setName('projectbadge');
+        $this->setPhpName('Projectbadge');
         $this->setIdentifierQuoting(false);
-        $this->setClassName('\\Projectaccount');
+        $this->setClassName('\\Projectbadge');
         $this->setPackage('propelclasses');
         $this->setUseIdGenerator(true);
         // columns
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
         $this->addColumn('uuid', 'Uuid', 'VARCHAR', true, 255, null);
-        $this->addColumn('targetamt', 'Targetamt', 'INTEGER', true, null, null);
-        $this->addColumn('currency', 'Currency', 'VARCHAR', true, 255, null);
-        $this->addColumn('Totaltargetamt', 'TotalTargetamt', 'INTEGER', true, null, null);
-        $this->addColumn('amtoffsite', 'Amtoffsite', 'INTEGER', true, null, null);
-        $this->addColumn('amtraised', 'Amtraised', 'INTEGER', true, null, null);
-        $this->addColumn('donorcount', 'Donorcount', 'INTEGER', true, null, null);
+        $this->addColumn('badgeid', 'Badgeid', 'INTEGER', false, null, null);
+        $this->addColumn('badgename', 'Badgename', 'VARCHAR', false, 255, null);
+        $this->addColumn('notes', 'Notes', 'VARCHAR', false, 255, null);
+        $this->addColumn('expiry', 'Expiry', 'INTEGER', false, null, null);
         $this->addColumn('projectuuid', 'ProjectUuid', 'VARCHAR', true, 255, null);
-        $this->addColumn('clubuuid', 'Clubuuid', 'VARCHAR', true, 255, null);
         $this->addColumn('created', 'Created', 'INTEGER', true, null, null);
-        $this->addColumn('modified', 'Modified', 'INTEGER', true, null, null);
     } // initialize()
 
     /**
@@ -259,7 +235,7 @@ class ProjectaccountTableMap extends TableMap
      */
     public static function getOMClass($withPrefix = true)
     {
-        return $withPrefix ? ProjectaccountTableMap::CLASS_DEFAULT : ProjectaccountTableMap::OM_CLASS;
+        return $withPrefix ? ProjectbadgeTableMap::CLASS_DEFAULT : ProjectbadgeTableMap::OM_CLASS;
     }
 
     /**
@@ -273,22 +249,22 @@ class ProjectaccountTableMap extends TableMap
      *
      * @throws PropelException Any exceptions caught during processing will be
      *                         rethrown wrapped into a PropelException.
-     * @return array           (Projectaccount object, last column rank)
+     * @return array           (Projectbadge object, last column rank)
      */
     public static function populateObject($row, $offset = 0, $indexType = TableMap::TYPE_NUM)
     {
-        $key = ProjectaccountTableMap::getPrimaryKeyHashFromRow($row, $offset, $indexType);
-        if (null !== ($obj = ProjectaccountTableMap::getInstanceFromPool($key))) {
+        $key = ProjectbadgeTableMap::getPrimaryKeyHashFromRow($row, $offset, $indexType);
+        if (null !== ($obj = ProjectbadgeTableMap::getInstanceFromPool($key))) {
             // We no longer rehydrate the object, since this can cause data loss.
             // See http://www.propelorm.org/ticket/509
             // $obj->hydrate($row, $offset, true); // rehydrate
-            $col = $offset + ProjectaccountTableMap::NUM_HYDRATE_COLUMNS;
+            $col = $offset + ProjectbadgeTableMap::NUM_HYDRATE_COLUMNS;
         } else {
-            $cls = ProjectaccountTableMap::OM_CLASS;
-            /** @var Projectaccount $obj */
+            $cls = ProjectbadgeTableMap::OM_CLASS;
+            /** @var Projectbadge $obj */
             $obj = new $cls();
             $col = $obj->hydrate($row, $offset, false, $indexType);
-            ProjectaccountTableMap::addInstanceToPool($obj, $key);
+            ProjectbadgeTableMap::addInstanceToPool($obj, $key);
         }
 
         return array($obj, $col);
@@ -311,18 +287,18 @@ class ProjectaccountTableMap extends TableMap
         $cls = static::getOMClass(false);
         // populate the object(s)
         while ($row = $dataFetcher->fetch()) {
-            $key = ProjectaccountTableMap::getPrimaryKeyHashFromRow($row, 0, $dataFetcher->getIndexType());
-            if (null !== ($obj = ProjectaccountTableMap::getInstanceFromPool($key))) {
+            $key = ProjectbadgeTableMap::getPrimaryKeyHashFromRow($row, 0, $dataFetcher->getIndexType());
+            if (null !== ($obj = ProjectbadgeTableMap::getInstanceFromPool($key))) {
                 // We no longer rehydrate the object, since this can cause data loss.
                 // See http://www.propelorm.org/ticket/509
                 // $obj->hydrate($row, 0, true); // rehydrate
                 $results[] = $obj;
             } else {
-                /** @var Projectaccount $obj */
+                /** @var Projectbadge $obj */
                 $obj = new $cls();
                 $obj->hydrate($row);
                 $results[] = $obj;
-                ProjectaccountTableMap::addInstanceToPool($obj, $key);
+                ProjectbadgeTableMap::addInstanceToPool($obj, $key);
             } // if key exists
         }
 
@@ -343,31 +319,23 @@ class ProjectaccountTableMap extends TableMap
     public static function addSelectColumns(Criteria $criteria, $alias = null)
     {
         if (null === $alias) {
-            $criteria->addSelectColumn(ProjectaccountTableMap::COL_ID);
-            $criteria->addSelectColumn(ProjectaccountTableMap::COL_UUID);
-            $criteria->addSelectColumn(ProjectaccountTableMap::COL_TARGETAMT);
-            $criteria->addSelectColumn(ProjectaccountTableMap::COL_CURRENCY);
-            $criteria->addSelectColumn(ProjectaccountTableMap::COL_TOTALTARGETAMT);
-            $criteria->addSelectColumn(ProjectaccountTableMap::COL_AMTOFFSITE);
-            $criteria->addSelectColumn(ProjectaccountTableMap::COL_AMTRAISED);
-            $criteria->addSelectColumn(ProjectaccountTableMap::COL_DONORCOUNT);
-            $criteria->addSelectColumn(ProjectaccountTableMap::COL_PROJECTUUID);
-            $criteria->addSelectColumn(ProjectaccountTableMap::COL_CLUBUUID);
-            $criteria->addSelectColumn(ProjectaccountTableMap::COL_CREATED);
-            $criteria->addSelectColumn(ProjectaccountTableMap::COL_MODIFIED);
+            $criteria->addSelectColumn(ProjectbadgeTableMap::COL_ID);
+            $criteria->addSelectColumn(ProjectbadgeTableMap::COL_UUID);
+            $criteria->addSelectColumn(ProjectbadgeTableMap::COL_BADGEID);
+            $criteria->addSelectColumn(ProjectbadgeTableMap::COL_BADGENAME);
+            $criteria->addSelectColumn(ProjectbadgeTableMap::COL_NOTES);
+            $criteria->addSelectColumn(ProjectbadgeTableMap::COL_EXPIRY);
+            $criteria->addSelectColumn(ProjectbadgeTableMap::COL_PROJECTUUID);
+            $criteria->addSelectColumn(ProjectbadgeTableMap::COL_CREATED);
         } else {
             $criteria->addSelectColumn($alias . '.id');
             $criteria->addSelectColumn($alias . '.uuid');
-            $criteria->addSelectColumn($alias . '.targetamt');
-            $criteria->addSelectColumn($alias . '.currency');
-            $criteria->addSelectColumn($alias . '.Totaltargetamt');
-            $criteria->addSelectColumn($alias . '.amtoffsite');
-            $criteria->addSelectColumn($alias . '.amtraised');
-            $criteria->addSelectColumn($alias . '.donorcount');
+            $criteria->addSelectColumn($alias . '.badgeid');
+            $criteria->addSelectColumn($alias . '.badgename');
+            $criteria->addSelectColumn($alias . '.notes');
+            $criteria->addSelectColumn($alias . '.expiry');
             $criteria->addSelectColumn($alias . '.projectuuid');
-            $criteria->addSelectColumn($alias . '.clubuuid');
             $criteria->addSelectColumn($alias . '.created');
-            $criteria->addSelectColumn($alias . '.modified');
         }
     }
 
@@ -380,7 +348,7 @@ class ProjectaccountTableMap extends TableMap
      */
     public static function getTableMap()
     {
-        return Propel::getServiceContainer()->getDatabaseMap(ProjectaccountTableMap::DATABASE_NAME)->getTable(ProjectaccountTableMap::TABLE_NAME);
+        return Propel::getServiceContainer()->getDatabaseMap(ProjectbadgeTableMap::DATABASE_NAME)->getTable(ProjectbadgeTableMap::TABLE_NAME);
     }
 
     /**
@@ -388,16 +356,16 @@ class ProjectaccountTableMap extends TableMap
      */
     public static function buildTableMap()
     {
-        $dbMap = Propel::getServiceContainer()->getDatabaseMap(ProjectaccountTableMap::DATABASE_NAME);
-        if (!$dbMap->hasTable(ProjectaccountTableMap::TABLE_NAME)) {
-            $dbMap->addTableObject(new ProjectaccountTableMap());
+        $dbMap = Propel::getServiceContainer()->getDatabaseMap(ProjectbadgeTableMap::DATABASE_NAME);
+        if (!$dbMap->hasTable(ProjectbadgeTableMap::TABLE_NAME)) {
+            $dbMap->addTableObject(new ProjectbadgeTableMap());
         }
     }
 
     /**
-     * Performs a DELETE on the database, given a Projectaccount or Criteria object OR a primary key value.
+     * Performs a DELETE on the database, given a Projectbadge or Criteria object OR a primary key value.
      *
-     * @param mixed               $values Criteria or Projectaccount object or primary key or array of primary keys
+     * @param mixed               $values Criteria or Projectbadge object or primary key or array of primary keys
      *              which is used to create the DELETE statement
      * @param  ConnectionInterface $con the connection to use
      * @return int             The number of affected rows (if supported by underlying database driver).  This includes CASCADE-related rows
@@ -408,27 +376,27 @@ class ProjectaccountTableMap extends TableMap
      public static function doDelete($values, ConnectionInterface $con = null)
      {
         if (null === $con) {
-            $con = Propel::getServiceContainer()->getWriteConnection(ProjectaccountTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(ProjectbadgeTableMap::DATABASE_NAME);
         }
 
         if ($values instanceof Criteria) {
             // rename for clarity
             $criteria = $values;
-        } elseif ($values instanceof \Projectaccount) { // it's a model object
+        } elseif ($values instanceof \Projectbadge) { // it's a model object
             // create criteria based on pk values
             $criteria = $values->buildPkeyCriteria();
         } else { // it's a primary key, or an array of pks
-            $criteria = new Criteria(ProjectaccountTableMap::DATABASE_NAME);
-            $criteria->add(ProjectaccountTableMap::COL_ID, (array) $values, Criteria::IN);
+            $criteria = new Criteria(ProjectbadgeTableMap::DATABASE_NAME);
+            $criteria->add(ProjectbadgeTableMap::COL_ID, (array) $values, Criteria::IN);
         }
 
-        $query = ProjectaccountQuery::create()->mergeWith($criteria);
+        $query = ProjectbadgeQuery::create()->mergeWith($criteria);
 
         if ($values instanceof Criteria) {
-            ProjectaccountTableMap::clearInstancePool();
+            ProjectbadgeTableMap::clearInstancePool();
         } elseif (!is_object($values)) { // it's a primary key, or an array of pks
             foreach ((array) $values as $singleval) {
-                ProjectaccountTableMap::removeInstanceFromPool($singleval);
+                ProjectbadgeTableMap::removeInstanceFromPool($singleval);
             }
         }
 
@@ -436,20 +404,20 @@ class ProjectaccountTableMap extends TableMap
     }
 
     /**
-     * Deletes all rows from the projectaccount table.
+     * Deletes all rows from the projectbadge table.
      *
      * @param ConnectionInterface $con the connection to use
      * @return int The number of affected rows (if supported by underlying database driver).
      */
     public static function doDeleteAll(ConnectionInterface $con = null)
     {
-        return ProjectaccountQuery::create()->doDeleteAll($con);
+        return ProjectbadgeQuery::create()->doDeleteAll($con);
     }
 
     /**
-     * Performs an INSERT on the database, given a Projectaccount or Criteria object.
+     * Performs an INSERT on the database, given a Projectbadge or Criteria object.
      *
-     * @param mixed               $criteria Criteria or Projectaccount object containing data that is used to create the INSERT statement.
+     * @param mixed               $criteria Criteria or Projectbadge object containing data that is used to create the INSERT statement.
      * @param ConnectionInterface $con the ConnectionInterface connection to use
      * @return mixed           The new primary key.
      * @throws PropelException Any exceptions caught during processing will be
@@ -458,22 +426,22 @@ class ProjectaccountTableMap extends TableMap
     public static function doInsert($criteria, ConnectionInterface $con = null)
     {
         if (null === $con) {
-            $con = Propel::getServiceContainer()->getWriteConnection(ProjectaccountTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(ProjectbadgeTableMap::DATABASE_NAME);
         }
 
         if ($criteria instanceof Criteria) {
             $criteria = clone $criteria; // rename for clarity
         } else {
-            $criteria = $criteria->buildCriteria(); // build Criteria from Projectaccount object
+            $criteria = $criteria->buildCriteria(); // build Criteria from Projectbadge object
         }
 
-        if ($criteria->containsKey(ProjectaccountTableMap::COL_ID) && $criteria->keyContainsValue(ProjectaccountTableMap::COL_ID) ) {
-            throw new PropelException('Cannot insert a value for auto-increment primary key ('.ProjectaccountTableMap::COL_ID.')');
+        if ($criteria->containsKey(ProjectbadgeTableMap::COL_ID) && $criteria->keyContainsValue(ProjectbadgeTableMap::COL_ID) ) {
+            throw new PropelException('Cannot insert a value for auto-increment primary key ('.ProjectbadgeTableMap::COL_ID.')');
         }
 
 
         // Set the correct dbName
-        $query = ProjectaccountQuery::create()->mergeWith($criteria);
+        $query = ProjectbadgeQuery::create()->mergeWith($criteria);
 
         // use transaction because $criteria could contain info
         // for more than one table (I guess, conceivably)
@@ -482,7 +450,7 @@ class ProjectaccountTableMap extends TableMap
         });
     }
 
-} // ProjectaccountTableMap
+} // ProjectbadgeTableMap
 // This is the static code needed to register the TableMap for this table with the main Propel class.
 //
-ProjectaccountTableMap::buildTableMap();
+ProjectbadgeTableMap::buildTableMap();

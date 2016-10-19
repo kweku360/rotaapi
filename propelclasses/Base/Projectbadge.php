@@ -2,10 +2,10 @@
 
 namespace Base;
 
-use \ProjectaccountQuery as ChildProjectaccountQuery;
+use \ProjectbadgeQuery as ChildProjectbadgeQuery;
 use \Exception;
 use \PDO;
-use Map\ProjectaccountTableMap;
+use Map\ProjectbadgeTableMap;
 use Propel\Runtime\Propel;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\ActiveQuery\ModelCriteria;
@@ -19,18 +19,18 @@ use Propel\Runtime\Map\TableMap;
 use Propel\Runtime\Parser\AbstractParser;
 
 /**
- * Base class that represents a row from the 'projectaccount' table.
+ * Base class that represents a row from the 'projectbadge' table.
  *
  *
  *
 * @package    propel.generator.propelclasses.Base
 */
-abstract class Projectaccount implements ActiveRecordInterface
+abstract class Projectbadge implements ActiveRecordInterface
 {
     /**
      * TableMap class name
      */
-    const TABLE_MAP = '\\Map\\ProjectaccountTableMap';
+    const TABLE_MAP = '\\Map\\ProjectbadgeTableMap';
 
 
     /**
@@ -72,40 +72,28 @@ abstract class Projectaccount implements ActiveRecordInterface
     protected $uuid;
 
     /**
-     * The value for the targetamt field.
+     * The value for the badgeid field.
      * @var        int
      */
-    protected $targetamt;
+    protected $badgeid;
 
     /**
-     * The value for the currency field.
+     * The value for the badgename field.
      * @var        string
      */
-    protected $currency;
+    protected $badgename;
 
     /**
-     * The value for the totaltargetamt field.
-     * @var        int
+     * The value for the notes field.
+     * @var        string
      */
-    protected $totaltargetamt;
+    protected $notes;
 
     /**
-     * The value for the amtoffsite field.
+     * The value for the expiry field.
      * @var        int
      */
-    protected $amtoffsite;
-
-    /**
-     * The value for the amtraised field.
-     * @var        int
-     */
-    protected $amtraised;
-
-    /**
-     * The value for the donorcount field.
-     * @var        int
-     */
-    protected $donorcount;
+    protected $expiry;
 
     /**
      * The value for the projectuuid field.
@@ -114,22 +102,10 @@ abstract class Projectaccount implements ActiveRecordInterface
     protected $projectuuid;
 
     /**
-     * The value for the clubuuid field.
-     * @var        string
-     */
-    protected $clubuuid;
-
-    /**
      * The value for the created field.
      * @var        int
      */
     protected $created;
-
-    /**
-     * The value for the modified field.
-     * @var        int
-     */
-    protected $modified;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -140,7 +116,7 @@ abstract class Projectaccount implements ActiveRecordInterface
     protected $alreadyInSave = false;
 
     /**
-     * Initializes internal state of Base\Projectaccount object.
+     * Initializes internal state of Base\Projectbadge object.
      */
     public function __construct()
     {
@@ -235,9 +211,9 @@ abstract class Projectaccount implements ActiveRecordInterface
     }
 
     /**
-     * Compares this with another <code>Projectaccount</code> instance.  If
-     * <code>obj</code> is an instance of <code>Projectaccount</code>, delegates to
-     * <code>equals(Projectaccount)</code>.  Otherwise, returns <code>false</code>.
+     * Compares this with another <code>Projectbadge</code> instance.  If
+     * <code>obj</code> is an instance of <code>Projectbadge</code>, delegates to
+     * <code>equals(Projectbadge)</code>.  Otherwise, returns <code>false</code>.
      *
      * @param  mixed   $obj The object to compare to.
      * @return boolean Whether equal to the object specified.
@@ -303,7 +279,7 @@ abstract class Projectaccount implements ActiveRecordInterface
      * @param string $name  The virtual column name
      * @param mixed  $value The value to give to the virtual column
      *
-     * @return $this|Projectaccount The current object, for fluid interface
+     * @return $this|Projectbadge The current object, for fluid interface
      */
     public function setVirtualColumn($name, $value)
     {
@@ -377,63 +353,43 @@ abstract class Projectaccount implements ActiveRecordInterface
     }
 
     /**
-     * Get the [targetamt] column value.
+     * Get the [badgeid] column value.
      *
      * @return int
      */
-    public function getTargetamt()
+    public function getBadgeid()
     {
-        return $this->targetamt;
+        return $this->badgeid;
     }
 
     /**
-     * Get the [currency] column value.
+     * Get the [badgename] column value.
      *
      * @return string
      */
-    public function getCurrency()
+    public function getBadgename()
     {
-        return $this->currency;
+        return $this->badgename;
     }
 
     /**
-     * Get the [totaltargetamt] column value.
+     * Get the [notes] column value.
      *
-     * @return int
+     * @return string
      */
-    public function getTotalTargetamt()
+    public function getNotes()
     {
-        return $this->totaltargetamt;
+        return $this->notes;
     }
 
     /**
-     * Get the [amtoffsite] column value.
+     * Get the [expiry] column value.
      *
      * @return int
      */
-    public function getAmtoffsite()
+    public function getExpiry()
     {
-        return $this->amtoffsite;
-    }
-
-    /**
-     * Get the [amtraised] column value.
-     *
-     * @return int
-     */
-    public function getAmtraised()
-    {
-        return $this->amtraised;
-    }
-
-    /**
-     * Get the [donorcount] column value.
-     *
-     * @return int
-     */
-    public function getDonorcount()
-    {
-        return $this->donorcount;
+        return $this->expiry;
     }
 
     /**
@@ -447,16 +403,6 @@ abstract class Projectaccount implements ActiveRecordInterface
     }
 
     /**
-     * Get the [clubuuid] column value.
-     *
-     * @return string
-     */
-    public function getClubuuid()
-    {
-        return $this->clubuuid;
-    }
-
-    /**
      * Get the [created] column value.
      *
      * @return int
@@ -467,20 +413,10 @@ abstract class Projectaccount implements ActiveRecordInterface
     }
 
     /**
-     * Get the [modified] column value.
-     *
-     * @return int
-     */
-    public function getModified()
-    {
-        return $this->modified;
-    }
-
-    /**
      * Set the value of [id] column.
      *
      * @param int $v new value
-     * @return $this|\Projectaccount The current object (for fluent API support)
+     * @return $this|\Projectbadge The current object (for fluent API support)
      */
     public function setId($v)
     {
@@ -490,7 +426,7 @@ abstract class Projectaccount implements ActiveRecordInterface
 
         if ($this->id !== $v) {
             $this->id = $v;
-            $this->modifiedColumns[ProjectaccountTableMap::COL_ID] = true;
+            $this->modifiedColumns[ProjectbadgeTableMap::COL_ID] = true;
         }
 
         return $this;
@@ -500,7 +436,7 @@ abstract class Projectaccount implements ActiveRecordInterface
      * Set the value of [uuid] column.
      *
      * @param string $v new value
-     * @return $this|\Projectaccount The current object (for fluent API support)
+     * @return $this|\Projectbadge The current object (for fluent API support)
      */
     public function setUuid($v)
     {
@@ -510,137 +446,97 @@ abstract class Projectaccount implements ActiveRecordInterface
 
         if ($this->uuid !== $v) {
             $this->uuid = $v;
-            $this->modifiedColumns[ProjectaccountTableMap::COL_UUID] = true;
+            $this->modifiedColumns[ProjectbadgeTableMap::COL_UUID] = true;
         }
 
         return $this;
     } // setUuid()
 
     /**
-     * Set the value of [targetamt] column.
+     * Set the value of [badgeid] column.
      *
      * @param int $v new value
-     * @return $this|\Projectaccount The current object (for fluent API support)
+     * @return $this|\Projectbadge The current object (for fluent API support)
      */
-    public function setTargetamt($v)
+    public function setBadgeid($v)
     {
         if ($v !== null) {
             $v = (int) $v;
         }
 
-        if ($this->targetamt !== $v) {
-            $this->targetamt = $v;
-            $this->modifiedColumns[ProjectaccountTableMap::COL_TARGETAMT] = true;
+        if ($this->badgeid !== $v) {
+            $this->badgeid = $v;
+            $this->modifiedColumns[ProjectbadgeTableMap::COL_BADGEID] = true;
         }
 
         return $this;
-    } // setTargetamt()
+    } // setBadgeid()
 
     /**
-     * Set the value of [currency] column.
+     * Set the value of [badgename] column.
      *
      * @param string $v new value
-     * @return $this|\Projectaccount The current object (for fluent API support)
+     * @return $this|\Projectbadge The current object (for fluent API support)
      */
-    public function setCurrency($v)
+    public function setBadgename($v)
     {
         if ($v !== null) {
             $v = (string) $v;
         }
 
-        if ($this->currency !== $v) {
-            $this->currency = $v;
-            $this->modifiedColumns[ProjectaccountTableMap::COL_CURRENCY] = true;
+        if ($this->badgename !== $v) {
+            $this->badgename = $v;
+            $this->modifiedColumns[ProjectbadgeTableMap::COL_BADGENAME] = true;
         }
 
         return $this;
-    } // setCurrency()
+    } // setBadgename()
 
     /**
-     * Set the value of [totaltargetamt] column.
+     * Set the value of [notes] column.
+     *
+     * @param string $v new value
+     * @return $this|\Projectbadge The current object (for fluent API support)
+     */
+    public function setNotes($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->notes !== $v) {
+            $this->notes = $v;
+            $this->modifiedColumns[ProjectbadgeTableMap::COL_NOTES] = true;
+        }
+
+        return $this;
+    } // setNotes()
+
+    /**
+     * Set the value of [expiry] column.
      *
      * @param int $v new value
-     * @return $this|\Projectaccount The current object (for fluent API support)
+     * @return $this|\Projectbadge The current object (for fluent API support)
      */
-    public function setTotalTargetamt($v)
+    public function setExpiry($v)
     {
         if ($v !== null) {
             $v = (int) $v;
         }
 
-        if ($this->totaltargetamt !== $v) {
-            $this->totaltargetamt = $v;
-            $this->modifiedColumns[ProjectaccountTableMap::COL_TOTALTARGETAMT] = true;
+        if ($this->expiry !== $v) {
+            $this->expiry = $v;
+            $this->modifiedColumns[ProjectbadgeTableMap::COL_EXPIRY] = true;
         }
 
         return $this;
-    } // setTotalTargetamt()
-
-    /**
-     * Set the value of [amtoffsite] column.
-     *
-     * @param int $v new value
-     * @return $this|\Projectaccount The current object (for fluent API support)
-     */
-    public function setAmtoffsite($v)
-    {
-        if ($v !== null) {
-            $v = (int) $v;
-        }
-
-        if ($this->amtoffsite !== $v) {
-            $this->amtoffsite = $v;
-            $this->modifiedColumns[ProjectaccountTableMap::COL_AMTOFFSITE] = true;
-        }
-
-        return $this;
-    } // setAmtoffsite()
-
-    /**
-     * Set the value of [amtraised] column.
-     *
-     * @param int $v new value
-     * @return $this|\Projectaccount The current object (for fluent API support)
-     */
-    public function setAmtraised($v)
-    {
-        if ($v !== null) {
-            $v = (int) $v;
-        }
-
-        if ($this->amtraised !== $v) {
-            $this->amtraised = $v;
-            $this->modifiedColumns[ProjectaccountTableMap::COL_AMTRAISED] = true;
-        }
-
-        return $this;
-    } // setAmtraised()
-
-    /**
-     * Set the value of [donorcount] column.
-     *
-     * @param int $v new value
-     * @return $this|\Projectaccount The current object (for fluent API support)
-     */
-    public function setDonorcount($v)
-    {
-        if ($v !== null) {
-            $v = (int) $v;
-        }
-
-        if ($this->donorcount !== $v) {
-            $this->donorcount = $v;
-            $this->modifiedColumns[ProjectaccountTableMap::COL_DONORCOUNT] = true;
-        }
-
-        return $this;
-    } // setDonorcount()
+    } // setExpiry()
 
     /**
      * Set the value of [projectuuid] column.
      *
      * @param string $v new value
-     * @return $this|\Projectaccount The current object (for fluent API support)
+     * @return $this|\Projectbadge The current object (for fluent API support)
      */
     public function setProjectUuid($v)
     {
@@ -650,37 +546,17 @@ abstract class Projectaccount implements ActiveRecordInterface
 
         if ($this->projectuuid !== $v) {
             $this->projectuuid = $v;
-            $this->modifiedColumns[ProjectaccountTableMap::COL_PROJECTUUID] = true;
+            $this->modifiedColumns[ProjectbadgeTableMap::COL_PROJECTUUID] = true;
         }
 
         return $this;
     } // setProjectUuid()
 
     /**
-     * Set the value of [clubuuid] column.
-     *
-     * @param string $v new value
-     * @return $this|\Projectaccount The current object (for fluent API support)
-     */
-    public function setClubuuid($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->clubuuid !== $v) {
-            $this->clubuuid = $v;
-            $this->modifiedColumns[ProjectaccountTableMap::COL_CLUBUUID] = true;
-        }
-
-        return $this;
-    } // setClubuuid()
-
-    /**
      * Set the value of [created] column.
      *
      * @param int $v new value
-     * @return $this|\Projectaccount The current object (for fluent API support)
+     * @return $this|\Projectbadge The current object (for fluent API support)
      */
     public function setCreated($v)
     {
@@ -690,31 +566,11 @@ abstract class Projectaccount implements ActiveRecordInterface
 
         if ($this->created !== $v) {
             $this->created = $v;
-            $this->modifiedColumns[ProjectaccountTableMap::COL_CREATED] = true;
+            $this->modifiedColumns[ProjectbadgeTableMap::COL_CREATED] = true;
         }
 
         return $this;
     } // setCreated()
-
-    /**
-     * Set the value of [modified] column.
-     *
-     * @param int $v new value
-     * @return $this|\Projectaccount The current object (for fluent API support)
-     */
-    public function setModified($v)
-    {
-        if ($v !== null) {
-            $v = (int) $v;
-        }
-
-        if ($this->modified !== $v) {
-            $this->modified = $v;
-            $this->modifiedColumns[ProjectaccountTableMap::COL_MODIFIED] = true;
-        }
-
-        return $this;
-    } // setModified()
 
     /**
      * Indicates whether the columns in this object are only set to default values.
@@ -752,41 +608,29 @@ abstract class Projectaccount implements ActiveRecordInterface
     {
         try {
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 0 + $startcol : ProjectaccountTableMap::translateFieldName('Id', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 0 + $startcol : ProjectbadgeTableMap::translateFieldName('Id', TableMap::TYPE_PHPNAME, $indexType)];
             $this->id = (null !== $col) ? (int) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : ProjectaccountTableMap::translateFieldName('Uuid', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : ProjectbadgeTableMap::translateFieldName('Uuid', TableMap::TYPE_PHPNAME, $indexType)];
             $this->uuid = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 2 + $startcol : ProjectaccountTableMap::translateFieldName('Targetamt', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->targetamt = (null !== $col) ? (int) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 2 + $startcol : ProjectbadgeTableMap::translateFieldName('Badgeid', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->badgeid = (null !== $col) ? (int) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : ProjectaccountTableMap::translateFieldName('Currency', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->currency = (null !== $col) ? (string) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : ProjectbadgeTableMap::translateFieldName('Badgename', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->badgename = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : ProjectaccountTableMap::translateFieldName('TotalTargetamt', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->totaltargetamt = (null !== $col) ? (int) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : ProjectbadgeTableMap::translateFieldName('Notes', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->notes = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 5 + $startcol : ProjectaccountTableMap::translateFieldName('Amtoffsite', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->amtoffsite = (null !== $col) ? (int) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 5 + $startcol : ProjectbadgeTableMap::translateFieldName('Expiry', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->expiry = (null !== $col) ? (int) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 6 + $startcol : ProjectaccountTableMap::translateFieldName('Amtraised', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->amtraised = (null !== $col) ? (int) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 7 + $startcol : ProjectaccountTableMap::translateFieldName('Donorcount', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->donorcount = (null !== $col) ? (int) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 8 + $startcol : ProjectaccountTableMap::translateFieldName('ProjectUuid', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 6 + $startcol : ProjectbadgeTableMap::translateFieldName('ProjectUuid', TableMap::TYPE_PHPNAME, $indexType)];
             $this->projectuuid = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 9 + $startcol : ProjectaccountTableMap::translateFieldName('Clubuuid', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->clubuuid = (null !== $col) ? (string) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 10 + $startcol : ProjectaccountTableMap::translateFieldName('Created', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 7 + $startcol : ProjectbadgeTableMap::translateFieldName('Created', TableMap::TYPE_PHPNAME, $indexType)];
             $this->created = (null !== $col) ? (int) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 11 + $startcol : ProjectaccountTableMap::translateFieldName('Modified', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->modified = (null !== $col) ? (int) $col : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -795,10 +639,10 @@ abstract class Projectaccount implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 12; // 12 = ProjectaccountTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 8; // 8 = ProjectbadgeTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
-            throw new PropelException(sprintf('Error populating %s object', '\\Projectaccount'), 0, $e);
+            throw new PropelException(sprintf('Error populating %s object', '\\Projectbadge'), 0, $e);
         }
     }
 
@@ -840,13 +684,13 @@ abstract class Projectaccount implements ActiveRecordInterface
         }
 
         if ($con === null) {
-            $con = Propel::getServiceContainer()->getReadConnection(ProjectaccountTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getReadConnection(ProjectbadgeTableMap::DATABASE_NAME);
         }
 
         // We don't need to alter the object instance pool; we're just modifying this instance
         // already in the pool.
 
-        $dataFetcher = ChildProjectaccountQuery::create(null, $this->buildPkeyCriteria())->setFormatter(ModelCriteria::FORMAT_STATEMENT)->find($con);
+        $dataFetcher = ChildProjectbadgeQuery::create(null, $this->buildPkeyCriteria())->setFormatter(ModelCriteria::FORMAT_STATEMENT)->find($con);
         $row = $dataFetcher->fetch();
         $dataFetcher->close();
         if (!$row) {
@@ -865,8 +709,8 @@ abstract class Projectaccount implements ActiveRecordInterface
      * @param      ConnectionInterface $con
      * @return void
      * @throws PropelException
-     * @see Projectaccount::setDeleted()
-     * @see Projectaccount::isDeleted()
+     * @see Projectbadge::setDeleted()
+     * @see Projectbadge::isDeleted()
      */
     public function delete(ConnectionInterface $con = null)
     {
@@ -875,11 +719,11 @@ abstract class Projectaccount implements ActiveRecordInterface
         }
 
         if ($con === null) {
-            $con = Propel::getServiceContainer()->getWriteConnection(ProjectaccountTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(ProjectbadgeTableMap::DATABASE_NAME);
         }
 
         $con->transaction(function () use ($con) {
-            $deleteQuery = ChildProjectaccountQuery::create()
+            $deleteQuery = ChildProjectbadgeQuery::create()
                 ->filterByPrimaryKey($this->getPrimaryKey());
             $ret = $this->preDelete($con);
             if ($ret) {
@@ -910,7 +754,7 @@ abstract class Projectaccount implements ActiveRecordInterface
         }
 
         if ($con === null) {
-            $con = Propel::getServiceContainer()->getWriteConnection(ProjectaccountTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(ProjectbadgeTableMap::DATABASE_NAME);
         }
 
         return $con->transaction(function () use ($con) {
@@ -929,7 +773,7 @@ abstract class Projectaccount implements ActiveRecordInterface
                     $this->postUpdate($con);
                 }
                 $this->postSave($con);
-                ProjectaccountTableMap::addInstanceToPool($this);
+                ProjectbadgeTableMap::addInstanceToPool($this);
             } else {
                 $affectedRows = 0;
             }
@@ -986,51 +830,39 @@ abstract class Projectaccount implements ActiveRecordInterface
         $modifiedColumns = array();
         $index = 0;
 
-        $this->modifiedColumns[ProjectaccountTableMap::COL_ID] = true;
+        $this->modifiedColumns[ProjectbadgeTableMap::COL_ID] = true;
         if (null !== $this->id) {
-            throw new PropelException('Cannot insert a value for auto-increment primary key (' . ProjectaccountTableMap::COL_ID . ')');
+            throw new PropelException('Cannot insert a value for auto-increment primary key (' . ProjectbadgeTableMap::COL_ID . ')');
         }
 
          // check the columns in natural order for more readable SQL queries
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_ID)) {
+        if ($this->isColumnModified(ProjectbadgeTableMap::COL_ID)) {
             $modifiedColumns[':p' . $index++]  = 'id';
         }
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_UUID)) {
+        if ($this->isColumnModified(ProjectbadgeTableMap::COL_UUID)) {
             $modifiedColumns[':p' . $index++]  = 'uuid';
         }
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_TARGETAMT)) {
-            $modifiedColumns[':p' . $index++]  = 'targetamt';
+        if ($this->isColumnModified(ProjectbadgeTableMap::COL_BADGEID)) {
+            $modifiedColumns[':p' . $index++]  = 'badgeid';
         }
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_CURRENCY)) {
-            $modifiedColumns[':p' . $index++]  = 'currency';
+        if ($this->isColumnModified(ProjectbadgeTableMap::COL_BADGENAME)) {
+            $modifiedColumns[':p' . $index++]  = 'badgename';
         }
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_TOTALTARGETAMT)) {
-            $modifiedColumns[':p' . $index++]  = 'Totaltargetamt';
+        if ($this->isColumnModified(ProjectbadgeTableMap::COL_NOTES)) {
+            $modifiedColumns[':p' . $index++]  = 'notes';
         }
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_AMTOFFSITE)) {
-            $modifiedColumns[':p' . $index++]  = 'amtoffsite';
+        if ($this->isColumnModified(ProjectbadgeTableMap::COL_EXPIRY)) {
+            $modifiedColumns[':p' . $index++]  = 'expiry';
         }
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_AMTRAISED)) {
-            $modifiedColumns[':p' . $index++]  = 'amtraised';
-        }
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_DONORCOUNT)) {
-            $modifiedColumns[':p' . $index++]  = 'donorcount';
-        }
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_PROJECTUUID)) {
+        if ($this->isColumnModified(ProjectbadgeTableMap::COL_PROJECTUUID)) {
             $modifiedColumns[':p' . $index++]  = 'projectuuid';
         }
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_CLUBUUID)) {
-            $modifiedColumns[':p' . $index++]  = 'clubuuid';
-        }
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_CREATED)) {
+        if ($this->isColumnModified(ProjectbadgeTableMap::COL_CREATED)) {
             $modifiedColumns[':p' . $index++]  = 'created';
-        }
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_MODIFIED)) {
-            $modifiedColumns[':p' . $index++]  = 'modified';
         }
 
         $sql = sprintf(
-            'INSERT INTO projectaccount (%s) VALUES (%s)',
+            'INSERT INTO projectbadge (%s) VALUES (%s)',
             implode(', ', $modifiedColumns),
             implode(', ', array_keys($modifiedColumns))
         );
@@ -1045,35 +877,23 @@ abstract class Projectaccount implements ActiveRecordInterface
                     case 'uuid':
                         $stmt->bindValue($identifier, $this->uuid, PDO::PARAM_STR);
                         break;
-                    case 'targetamt':
-                        $stmt->bindValue($identifier, $this->targetamt, PDO::PARAM_INT);
+                    case 'badgeid':
+                        $stmt->bindValue($identifier, $this->badgeid, PDO::PARAM_INT);
                         break;
-                    case 'currency':
-                        $stmt->bindValue($identifier, $this->currency, PDO::PARAM_STR);
+                    case 'badgename':
+                        $stmt->bindValue($identifier, $this->badgename, PDO::PARAM_STR);
                         break;
-                    case 'Totaltargetamt':
-                        $stmt->bindValue($identifier, $this->totaltargetamt, PDO::PARAM_INT);
+                    case 'notes':
+                        $stmt->bindValue($identifier, $this->notes, PDO::PARAM_STR);
                         break;
-                    case 'amtoffsite':
-                        $stmt->bindValue($identifier, $this->amtoffsite, PDO::PARAM_INT);
-                        break;
-                    case 'amtraised':
-                        $stmt->bindValue($identifier, $this->amtraised, PDO::PARAM_INT);
-                        break;
-                    case 'donorcount':
-                        $stmt->bindValue($identifier, $this->donorcount, PDO::PARAM_INT);
+                    case 'expiry':
+                        $stmt->bindValue($identifier, $this->expiry, PDO::PARAM_INT);
                         break;
                     case 'projectuuid':
                         $stmt->bindValue($identifier, $this->projectuuid, PDO::PARAM_STR);
                         break;
-                    case 'clubuuid':
-                        $stmt->bindValue($identifier, $this->clubuuid, PDO::PARAM_STR);
-                        break;
                     case 'created':
                         $stmt->bindValue($identifier, $this->created, PDO::PARAM_INT);
-                        break;
-                    case 'modified':
-                        $stmt->bindValue($identifier, $this->modified, PDO::PARAM_INT);
                         break;
                 }
             }
@@ -1121,7 +941,7 @@ abstract class Projectaccount implements ActiveRecordInterface
      */
     public function getByName($name, $type = TableMap::TYPE_PHPNAME)
     {
-        $pos = ProjectaccountTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
+        $pos = ProjectbadgeTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
         $field = $this->getByPosition($pos);
 
         return $field;
@@ -1144,34 +964,22 @@ abstract class Projectaccount implements ActiveRecordInterface
                 return $this->getUuid();
                 break;
             case 2:
-                return $this->getTargetamt();
+                return $this->getBadgeid();
                 break;
             case 3:
-                return $this->getCurrency();
+                return $this->getBadgename();
                 break;
             case 4:
-                return $this->getTotalTargetamt();
+                return $this->getNotes();
                 break;
             case 5:
-                return $this->getAmtoffsite();
+                return $this->getExpiry();
                 break;
             case 6:
-                return $this->getAmtraised();
-                break;
-            case 7:
-                return $this->getDonorcount();
-                break;
-            case 8:
                 return $this->getProjectUuid();
                 break;
-            case 9:
-                return $this->getClubuuid();
-                break;
-            case 10:
+            case 7:
                 return $this->getCreated();
-                break;
-            case 11:
-                return $this->getModified();
                 break;
             default:
                 return null;
@@ -1196,24 +1004,20 @@ abstract class Projectaccount implements ActiveRecordInterface
     public function toArray($keyType = TableMap::TYPE_PHPNAME, $includeLazyLoadColumns = true, $alreadyDumpedObjects = array())
     {
 
-        if (isset($alreadyDumpedObjects['Projectaccount'][$this->hashCode()])) {
+        if (isset($alreadyDumpedObjects['Projectbadge'][$this->hashCode()])) {
             return '*RECURSION*';
         }
-        $alreadyDumpedObjects['Projectaccount'][$this->hashCode()] = true;
-        $keys = ProjectaccountTableMap::getFieldNames($keyType);
+        $alreadyDumpedObjects['Projectbadge'][$this->hashCode()] = true;
+        $keys = ProjectbadgeTableMap::getFieldNames($keyType);
         $result = array(
             $keys[0] => $this->getId(),
             $keys[1] => $this->getUuid(),
-            $keys[2] => $this->getTargetamt(),
-            $keys[3] => $this->getCurrency(),
-            $keys[4] => $this->getTotalTargetamt(),
-            $keys[5] => $this->getAmtoffsite(),
-            $keys[6] => $this->getAmtraised(),
-            $keys[7] => $this->getDonorcount(),
-            $keys[8] => $this->getProjectUuid(),
-            $keys[9] => $this->getClubuuid(),
-            $keys[10] => $this->getCreated(),
-            $keys[11] => $this->getModified(),
+            $keys[2] => $this->getBadgeid(),
+            $keys[3] => $this->getBadgename(),
+            $keys[4] => $this->getNotes(),
+            $keys[5] => $this->getExpiry(),
+            $keys[6] => $this->getProjectUuid(),
+            $keys[7] => $this->getCreated(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -1233,11 +1037,11 @@ abstract class Projectaccount implements ActiveRecordInterface
      *                one of the class type constants TableMap::TYPE_PHPNAME, TableMap::TYPE_CAMELNAME
      *                TableMap::TYPE_COLNAME, TableMap::TYPE_FIELDNAME, TableMap::TYPE_NUM.
      *                Defaults to TableMap::TYPE_PHPNAME.
-     * @return $this|\Projectaccount
+     * @return $this|\Projectbadge
      */
     public function setByName($name, $value, $type = TableMap::TYPE_PHPNAME)
     {
-        $pos = ProjectaccountTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
+        $pos = ProjectbadgeTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
 
         return $this->setByPosition($pos, $value);
     }
@@ -1248,7 +1052,7 @@ abstract class Projectaccount implements ActiveRecordInterface
      *
      * @param  int $pos position in xml schema
      * @param  mixed $value field value
-     * @return $this|\Projectaccount
+     * @return $this|\Projectbadge
      */
     public function setByPosition($pos, $value)
     {
@@ -1260,34 +1064,22 @@ abstract class Projectaccount implements ActiveRecordInterface
                 $this->setUuid($value);
                 break;
             case 2:
-                $this->setTargetamt($value);
+                $this->setBadgeid($value);
                 break;
             case 3:
-                $this->setCurrency($value);
+                $this->setBadgename($value);
                 break;
             case 4:
-                $this->setTotalTargetamt($value);
+                $this->setNotes($value);
                 break;
             case 5:
-                $this->setAmtoffsite($value);
+                $this->setExpiry($value);
                 break;
             case 6:
-                $this->setAmtraised($value);
-                break;
-            case 7:
-                $this->setDonorcount($value);
-                break;
-            case 8:
                 $this->setProjectUuid($value);
                 break;
-            case 9:
-                $this->setClubuuid($value);
-                break;
-            case 10:
+            case 7:
                 $this->setCreated($value);
-                break;
-            case 11:
-                $this->setModified($value);
                 break;
         } // switch()
 
@@ -1313,7 +1105,7 @@ abstract class Projectaccount implements ActiveRecordInterface
      */
     public function fromArray($arr, $keyType = TableMap::TYPE_PHPNAME)
     {
-        $keys = ProjectaccountTableMap::getFieldNames($keyType);
+        $keys = ProjectbadgeTableMap::getFieldNames($keyType);
 
         if (array_key_exists($keys[0], $arr)) {
             $this->setId($arr[$keys[0]]);
@@ -1322,34 +1114,22 @@ abstract class Projectaccount implements ActiveRecordInterface
             $this->setUuid($arr[$keys[1]]);
         }
         if (array_key_exists($keys[2], $arr)) {
-            $this->setTargetamt($arr[$keys[2]]);
+            $this->setBadgeid($arr[$keys[2]]);
         }
         if (array_key_exists($keys[3], $arr)) {
-            $this->setCurrency($arr[$keys[3]]);
+            $this->setBadgename($arr[$keys[3]]);
         }
         if (array_key_exists($keys[4], $arr)) {
-            $this->setTotalTargetamt($arr[$keys[4]]);
+            $this->setNotes($arr[$keys[4]]);
         }
         if (array_key_exists($keys[5], $arr)) {
-            $this->setAmtoffsite($arr[$keys[5]]);
+            $this->setExpiry($arr[$keys[5]]);
         }
         if (array_key_exists($keys[6], $arr)) {
-            $this->setAmtraised($arr[$keys[6]]);
+            $this->setProjectUuid($arr[$keys[6]]);
         }
         if (array_key_exists($keys[7], $arr)) {
-            $this->setDonorcount($arr[$keys[7]]);
-        }
-        if (array_key_exists($keys[8], $arr)) {
-            $this->setProjectUuid($arr[$keys[8]]);
-        }
-        if (array_key_exists($keys[9], $arr)) {
-            $this->setClubuuid($arr[$keys[9]]);
-        }
-        if (array_key_exists($keys[10], $arr)) {
-            $this->setCreated($arr[$keys[10]]);
-        }
-        if (array_key_exists($keys[11], $arr)) {
-            $this->setModified($arr[$keys[11]]);
+            $this->setCreated($arr[$keys[7]]);
         }
     }
 
@@ -1370,7 +1150,7 @@ abstract class Projectaccount implements ActiveRecordInterface
      * @param string $data The source data to import from
      * @param string $keyType The type of keys the array uses.
      *
-     * @return $this|\Projectaccount The current object, for fluid interface
+     * @return $this|\Projectbadge The current object, for fluid interface
      */
     public function importFrom($parser, $data, $keyType = TableMap::TYPE_PHPNAME)
     {
@@ -1390,43 +1170,31 @@ abstract class Projectaccount implements ActiveRecordInterface
      */
     public function buildCriteria()
     {
-        $criteria = new Criteria(ProjectaccountTableMap::DATABASE_NAME);
+        $criteria = new Criteria(ProjectbadgeTableMap::DATABASE_NAME);
 
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_ID)) {
-            $criteria->add(ProjectaccountTableMap::COL_ID, $this->id);
+        if ($this->isColumnModified(ProjectbadgeTableMap::COL_ID)) {
+            $criteria->add(ProjectbadgeTableMap::COL_ID, $this->id);
         }
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_UUID)) {
-            $criteria->add(ProjectaccountTableMap::COL_UUID, $this->uuid);
+        if ($this->isColumnModified(ProjectbadgeTableMap::COL_UUID)) {
+            $criteria->add(ProjectbadgeTableMap::COL_UUID, $this->uuid);
         }
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_TARGETAMT)) {
-            $criteria->add(ProjectaccountTableMap::COL_TARGETAMT, $this->targetamt);
+        if ($this->isColumnModified(ProjectbadgeTableMap::COL_BADGEID)) {
+            $criteria->add(ProjectbadgeTableMap::COL_BADGEID, $this->badgeid);
         }
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_CURRENCY)) {
-            $criteria->add(ProjectaccountTableMap::COL_CURRENCY, $this->currency);
+        if ($this->isColumnModified(ProjectbadgeTableMap::COL_BADGENAME)) {
+            $criteria->add(ProjectbadgeTableMap::COL_BADGENAME, $this->badgename);
         }
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_TOTALTARGETAMT)) {
-            $criteria->add(ProjectaccountTableMap::COL_TOTALTARGETAMT, $this->totaltargetamt);
+        if ($this->isColumnModified(ProjectbadgeTableMap::COL_NOTES)) {
+            $criteria->add(ProjectbadgeTableMap::COL_NOTES, $this->notes);
         }
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_AMTOFFSITE)) {
-            $criteria->add(ProjectaccountTableMap::COL_AMTOFFSITE, $this->amtoffsite);
+        if ($this->isColumnModified(ProjectbadgeTableMap::COL_EXPIRY)) {
+            $criteria->add(ProjectbadgeTableMap::COL_EXPIRY, $this->expiry);
         }
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_AMTRAISED)) {
-            $criteria->add(ProjectaccountTableMap::COL_AMTRAISED, $this->amtraised);
+        if ($this->isColumnModified(ProjectbadgeTableMap::COL_PROJECTUUID)) {
+            $criteria->add(ProjectbadgeTableMap::COL_PROJECTUUID, $this->projectuuid);
         }
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_DONORCOUNT)) {
-            $criteria->add(ProjectaccountTableMap::COL_DONORCOUNT, $this->donorcount);
-        }
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_PROJECTUUID)) {
-            $criteria->add(ProjectaccountTableMap::COL_PROJECTUUID, $this->projectuuid);
-        }
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_CLUBUUID)) {
-            $criteria->add(ProjectaccountTableMap::COL_CLUBUUID, $this->clubuuid);
-        }
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_CREATED)) {
-            $criteria->add(ProjectaccountTableMap::COL_CREATED, $this->created);
-        }
-        if ($this->isColumnModified(ProjectaccountTableMap::COL_MODIFIED)) {
-            $criteria->add(ProjectaccountTableMap::COL_MODIFIED, $this->modified);
+        if ($this->isColumnModified(ProjectbadgeTableMap::COL_CREATED)) {
+            $criteria->add(ProjectbadgeTableMap::COL_CREATED, $this->created);
         }
 
         return $criteria;
@@ -1444,8 +1212,8 @@ abstract class Projectaccount implements ActiveRecordInterface
      */
     public function buildPkeyCriteria()
     {
-        $criteria = ChildProjectaccountQuery::create();
-        $criteria->add(ProjectaccountTableMap::COL_ID, $this->id);
+        $criteria = ChildProjectbadgeQuery::create();
+        $criteria->add(ProjectbadgeTableMap::COL_ID, $this->id);
 
         return $criteria;
     }
@@ -1507,7 +1275,7 @@ abstract class Projectaccount implements ActiveRecordInterface
      * If desired, this method can also make copies of all associated (fkey referrers)
      * objects.
      *
-     * @param      object $copyObj An object of \Projectaccount (or compatible) type.
+     * @param      object $copyObj An object of \Projectbadge (or compatible) type.
      * @param      boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
      * @param      boolean $makeNew Whether to reset autoincrement PKs and make the object new.
      * @throws PropelException
@@ -1515,16 +1283,12 @@ abstract class Projectaccount implements ActiveRecordInterface
     public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
     {
         $copyObj->setUuid($this->getUuid());
-        $copyObj->setTargetamt($this->getTargetamt());
-        $copyObj->setCurrency($this->getCurrency());
-        $copyObj->setTotalTargetamt($this->getTotalTargetamt());
-        $copyObj->setAmtoffsite($this->getAmtoffsite());
-        $copyObj->setAmtraised($this->getAmtraised());
-        $copyObj->setDonorcount($this->getDonorcount());
+        $copyObj->setBadgeid($this->getBadgeid());
+        $copyObj->setBadgename($this->getBadgename());
+        $copyObj->setNotes($this->getNotes());
+        $copyObj->setExpiry($this->getExpiry());
         $copyObj->setProjectUuid($this->getProjectUuid());
-        $copyObj->setClubuuid($this->getClubuuid());
         $copyObj->setCreated($this->getCreated());
-        $copyObj->setModified($this->getModified());
         if ($makeNew) {
             $copyObj->setNew(true);
             $copyObj->setId(NULL); // this is a auto-increment column, so set to default value
@@ -1540,7 +1304,7 @@ abstract class Projectaccount implements ActiveRecordInterface
      * objects.
      *
      * @param  boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
-     * @return \Projectaccount Clone of current object.
+     * @return \Projectbadge Clone of current object.
      * @throws PropelException
      */
     public function copy($deepCopy = false)
@@ -1562,16 +1326,12 @@ abstract class Projectaccount implements ActiveRecordInterface
     {
         $this->id = null;
         $this->uuid = null;
-        $this->targetamt = null;
-        $this->currency = null;
-        $this->totaltargetamt = null;
-        $this->amtoffsite = null;
-        $this->amtraised = null;
-        $this->donorcount = null;
+        $this->badgeid = null;
+        $this->badgename = null;
+        $this->notes = null;
+        $this->expiry = null;
         $this->projectuuid = null;
-        $this->clubuuid = null;
         $this->created = null;
-        $this->modified = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();
         $this->resetModified();
@@ -1601,7 +1361,7 @@ abstract class Projectaccount implements ActiveRecordInterface
      */
     public function __toString()
     {
-        return (string) $this->exportTo(ProjectaccountTableMap::DEFAULT_STRING_FORMAT);
+        return (string) $this->exportTo(ProjectbadgeTableMap::DEFAULT_STRING_FORMAT);
     }
 
     /**
